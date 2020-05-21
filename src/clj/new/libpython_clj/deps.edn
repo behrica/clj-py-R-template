@@ -7,5 +7,5 @@
  :deps {
         org.clojure/clojure     {:mvn/version "1.10.1"}
         cnuernber/libpython-clj {:mvn/version "1.44"}
-        }
+        scicloj/clojisr         {:mvn/version  "1.0.0-BETA11"}}
  }
