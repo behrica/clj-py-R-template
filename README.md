@@ -48,8 +48,8 @@ A typical command line for running the nRepl in the docker container is then thi
 
 ```
 docker run -ti  \ 
- -v `pwd`:/code -w /code 
- -p 12345:12345 ,y-project
+ -v `pwd`:/code -w /code \
+ -p 12345:12345 my-project
  ```
  ### Using clijsr + libpython clj
  
