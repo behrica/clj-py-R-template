@@ -45,6 +45,7 @@ The template creates a Dockerfile in the project folder.
 The docker image can be build with
 
 ```
+cd appcompany.funapp
 docker build . -t my-project
 ```
 
