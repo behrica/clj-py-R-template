@@ -18,7 +18,7 @@ It contains a Dockerfile which has all dependencies for cljisr + libpython-clj p
 # example
 clj -Sdeps '{:deps {seancorfield/clj-new {:mvn/version "0.8.6"}}}' \
   -m clj-new.create \
-  https://github.com/behrica/clj-template/commit/4cfeb2b435282ace38c21a3efe2328594f7e34c4 \
+  https://github.com/behrica/clj-template@4cfeb2b435282ace38c21a3efe2328594f7e34c4 \
   appcompany.funapp
 ```
 
@@ -27,7 +27,7 @@ clj -Sdeps '{:deps {seancorfield/clj-new {:mvn/version "0.8.6"}}}' \
 ```bash 
 # example
 clj -A:new \
-   https://github.com/behrica/clj-template/commit/4cfeb2b435282ace38c21a3efe2328594f7e34c4
+   https://github.com/behrica/clj-template/commit@4cfeb2b435282ace38c21a3efe2328594f7e34c4
   appcompany.funapp
 ```
 
