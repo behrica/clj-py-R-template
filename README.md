@@ -27,7 +27,7 @@ clj -Sdeps '{:deps {seancorfield/clj-new {:mvn/version "0.8.6"}}}' \
 ```bash 
 # example
 clj -A:new \
-   https://github.com/behrica/clj-template/commit@4cfeb2b435282ace38c21a3efe2328594f7e34c4
+   https://github.com/behrica/clj-template/commit@4cfeb2b435282ace38c21a3efe2328594f7e34c4\
   appcompany.funapp
 ```
 
@@ -47,8 +47,8 @@ The Docker files assumes that the local project directory gets mounted into a fo
 A typical command line for running the nRepl in the docker container is then this:
 
 ```
-docker run -ti  \ 
- -v `pwd`:/code -w /code \
+docker run -ti \
+  -v `pwd`:/code -w /code \
  -p 12345:12345 my-project
  ```
  ### Using clijsr + libpython clj
