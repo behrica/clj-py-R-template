@@ -4,11 +4,10 @@ This template is the easiest way to use R + python from Clojure.
 
 In the world of Java / Clojure Docker is not that common, because on the JVM platform and using a dependency manger it is not really required.
 
-This situation changes, teh moment we add R / python into our stack.
+This situation changes, the moment we add R / python into our stack.
 Then Docker can be very helpfull to get started quickly and work in a reproducible manner.
 
-
-This template contains a Dockerfile which has all dependencies for ClojisR + libpython-clj plus a deps.edn file containing working versions of cljisr and libpython-clj
+This template contains a Dockerfile which has all dependencies for ClojisR + libpython-clj plus a deps.edn file containing working versions of ClojisR and libpython-clj
 
 
 
@@ -78,8 +77,10 @@ docker run -ti \
 
 As in the Docker image one concrete R version and a single python version is installed,
 libraries can be simply added by adding lines to the Dockerfile, like:
-
+In case native dependencies are required, they can be added via apt-get install xxx
 ```
+RUN apt-get install libssl-dev
+
 RUN pip3 install pandas
 
 RUN Rscript -e "install.packages('dplyr')"
