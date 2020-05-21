@@ -35,8 +35,8 @@ clj -A:new \
    profile. If you do not, you can use the following:
    
 ### Creating docker image
-The template creates Dockerfile in teh project folder.
-The image can be build with
+The template creates Dockerfile in the project folder.
+The docker image can be build with
 
 ```
 docker build . -t my-project
@@ -52,6 +52,7 @@ docker run -ti \
  -p 12345:12345 my-project
  ```
  ### Using clijsr + libpython clj
+ 
  
  Now Emacs (or any other nRepl client) can be connected to localhost:12345.
  In this repl, cljisr and libpython.clj work out of the box:
