@@ -88,6 +88,17 @@ RUN Rscript -e "install.packages('dplyr')"
 
 ```
 
+### Current versions
+
+The current version of this template (Dockerfile + deps.edn) contains the following versions:
+* R: 4.0.0
+* RServe: latest from rforge.net
+* python: 3.8.2
+* java:  openjdk 14.0.1
+* clojure: 1.10.1
+* clj-python/libpython-clj 1.44
+* scicloj/clojisr 1.0.0-BETA11
+
 
 
 
