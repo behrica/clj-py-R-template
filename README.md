@@ -1,9 +1,16 @@
-# Libpython-clj + cljisr clj-template
+# Libpython-clj + ClojisR  clj-template
 
-This template is the easieest way to use R + python from Clojure.
-It contains a Dockerfile which has all dependencies for cljisr + libpython-clj pluts a deps.end containing working versions of cljisr and libpython-clj
+This template is the easiest way to use R + python from Clojure.
 
-* https://github.com/seancorfield/clj-new
+In the world of Java / Clojure Docker is not that common, because on the JVM platform and using a dependency manger it is not really required.
+
+This situation changes, teh moment we add R / python into our stack.
+Then Docker can be very helpfull to get started quickly and work in a reproducible manner.
+
+
+This template contains a Dockerfile which has all dependencies for ClojisR + libpython-clj plus a deps.edn file containing working versions of cljisr and libpython-clj
+
+
 
 
 ## Usage
@@ -18,7 +25,7 @@ It contains a Dockerfile which has all dependencies for cljisr + libpython-clj p
 # example
 clj -Sdeps '{:deps {seancorfield/clj-new {:mvn/version "0.8.6"}}}' \
   -m clj-new.create \
-  https://github.com/behrica/clj-template@4cfeb2b435282ace38c21a3efe2328594f7e34c4 \
+  https://github.com/behrica/clj-template@12dfe54329f21807517808f141ddc48ce87f044d \
   appcompany.funapp
 ```
 
@@ -27,7 +34,7 @@ clj -Sdeps '{:deps {seancorfield/clj-new {:mvn/version "0.8.6"}}}' \
 ```bash 
 # example
 clj -A:new \
-   https://github.com/behrica/clj-template/commit@4cfeb2b435282ace38c21a3efe2328594f7e34c4\
+   https://github.com/behrica/clj-template@12dfe54329f21807517808f141ddc48ce87f044d \
   appcompany.funapp
 ```
 
@@ -35,14 +42,14 @@ clj -A:new \
    profile. 
    
 ### Creating docker image
-The template creates Dockerfile in the project folder.
+The template creates a Dockerfile in the project folder.
 The docker image can be build with
 
 ```
 docker build . -t my-project
 ```
 
-The Docker files assumes that the local project directory gets mounted into a folder in the container and that it becomes teh working directory. The docker image runs a nrepl on port 12345 which can be connected to by any other nRepl compatible client (including emacs+Cider)
+The Docker files assumes that the local project directory gets mounted into a folder in the container and that it becomes the working directory. The docker image runs a nRepl on port 12345 which can be connected to by any other nRepl compatible client (including emacs+Cider)
 
 A typical command line for running the nRepl in the docker container is then this:
 
