@@ -60,12 +60,25 @@ docker run -ti \
  ```
 (require '[libpython-clj.require :refer [require-python]])
 (require-python '[os :as os])
-(os/getwd)
+(os/getcwd)
 
 (require '[clojisr.v1.r :refer [r]])
 (r "1+1")
          
  ```
+
+### Customizing the Docker image (typicall to add R / python libraries)
+
+As in the Docker image one concrete R version and a single python version is installed,
+libraries can be simply added by adding lines to the Dockerfile, like:
+
+```
+RUN pip3 install pandas
+
+RUN Rscript -e "install.packages('dplyr')"
+
+```
+
 
 
 
