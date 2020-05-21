@@ -32,7 +32,7 @@ clj -A:new \
 ```
 
    **NOTE**: this assumes you have `clj-new` configured in you `~/.clojure/deps.edn`
-   profile. If you do not, you can use the following:
+   profile. 
    
 ### Creating docker image
 The template creates Dockerfile in the project folder.
