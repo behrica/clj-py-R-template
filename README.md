@@ -14,7 +14,7 @@ This template contains a Dockerfile which has all dependencies for ClojisR + lib
 
 ## Usage
 
-### libpython-clj + cljisr projects can now be created quickly in 2 ways from the latest stable template:
+### libpython-clj + ClojisR projects can now be created quickly in 2 ways from the latest stable template:
 
 
 -   **without** clj-new installed in user deps.edn
