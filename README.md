@@ -24,7 +24,7 @@ This template contains a Dockerfile which has all dependencies for ClojisR + lib
 # example
 clj -Sdeps '{:deps {seancorfield/clj-new {:mvn/version "0.8.6"}}}' \
   -m clj-new.create \
-  https://github.com/behrica/clj-template@12dfe54329f21807517808f141ddc48ce87f044d \
+https://github.com/behrica/clj-template/commit/645cb3c65b7beb8ac62bfb0264b462aff134d545 \
   appcompany.funapp
 ```
 
@@ -33,7 +33,7 @@ clj -Sdeps '{:deps {seancorfield/clj-new {:mvn/version "0.8.6"}}}' \
 ```bash 
 # example
 clj -A:new \
-   https://github.com/behrica/clj-template@12dfe54329f21807517808f141ddc48ce87f044d \
+https://github.com/behrica/clj-template/commit/645cb3c65b7beb8ac62bfb0264b462aff134d545 \
   appcompany.funapp
 ```
 
