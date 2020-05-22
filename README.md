@@ -58,7 +58,7 @@ docker run -ti \
   -v `pwd`:/code -w /code \
  -p 12345:12345 my-project
  ```
- ### Using clijsr + libpython clj
+ ### Using ClojisR + libpython-clj in repl
  
  
  Now Emacs (or any other nRepl client) can be connected to localhost:12345.
