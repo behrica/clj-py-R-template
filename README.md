@@ -94,6 +94,7 @@ RUN Rscript -e "install.packages('dplyr')"
 ### Current versions
 
 The current version of this template (Dockerfile + deps.edn) contains the following versions:
+
 * R: 4.0.0
 * RServe: latest from rforge.net
 * python: 3.8.2
@@ -103,6 +104,3 @@ The current version of this template (Dockerfile + deps.edn) contains the follow
 * scicloj/clojisr 1.0.0-BETA11
 * cider-nrepl 0.25.2
 
-For help please visit our [help-wanted](https://clojurians.zulipchat.com/#narrow/stream/215609-libpython-clj-dev/topic/help-wanted) topic.
-
-For configuration option requests, please file a Github issue or visit our [feature requests]( https://clojurians.zulipchat.com/#narrow/stream/215609-libpython-clj-dev/topic/feature-requests) topic.  
