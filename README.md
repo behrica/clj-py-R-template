@@ -2,19 +2,19 @@
 
 This template is the easiest way to use R + python from Clojure.
 
-In the world of Java / Clojure Docker is not that common, because on the JVM platform and using a dependency manger it is not really required.
+In the world of Java / Clojure Docker is not that common, because on the JVM platform using a dependency manger it is not really required.
 
 This situation changes, the moment we add R / python into our stack.
 Then Docker can be very helpfull to get started quickly and work in a reproducible manner.
 
-This template contains a Dockerfile which has all dependencies for ClojisR + libpython-clj plus a deps.edn file containing working versions of ClojisR and libpython-clj
+This template contains a Dockerfile which has Clojure and all dependencies for ClojisR + libpython-clj plus a deps.edn file containing working versions of ClojisR and libpython-clj
 
 
 
 
 ## Usage
 
-### libpython-clj + ClojisR projects can now be created quickly in 2 ways from the latest stable template:
+Clojure projects including libpython-clj + ClojisR can now be created quickly in 2 ways from the latest stable template:
 
 
 -   **without** clj-new installed in user deps.edn
@@ -47,7 +47,7 @@ cd appcompany.funapp
 docker build . -t funapp
 ```
 
-The Docker files assumes that the local project directory gets mounted into a folder in the container and that it becomes the working directory. The docker image runs a nRepl on port 12345 which can be connected to by any other nRepl compatible client (including emacs+Cider)
+The Dockerfile assumes that the local project directory gets mounted into a folder in the container and that it becomes the working directory. The docker image runs a nRepl on port 12345 which can be connected to by any other nRepl compatible client (including emacs+Cider)
 
 A typical command line for running the nRepl in the docker container is then this:
 
@@ -67,7 +67,7 @@ docker run -ti \
  ```
  
  
- In this repl, cljisr and libpython.clj work out of the box:
+ In this connected repl , cljisr and libpython.clj work out of the box:
  
  ```
 (require '[libpython-clj.require :refer [require-python]])
@@ -81,9 +81,13 @@ docker run -ti \
 
 ### Customizing the Docker image (typicall to add R / python libraries)
 
-As in the Docker image one concrete R version and a single python version is installed,
+As in the Docker image one single R version and a single python version is installed,
 libraries can be simply added by adding lines to the Dockerfile, like:
-In case native dependencies are required, they can be added via apt-get install xxx
+In case native dependencies are required, they can be added via "apt-get install"
+
+The follwoing would add a native library, a python libary and a R package.
+
+
 ```
 RUN apt-get install libssl-dev
 
@@ -93,13 +97,15 @@ RUN Rscript -e "install.packages('dplyr')"
 
 ```
 
-
+Clojure dependencies are currently specified in the Dockerfile, but can be added to the deps.edn file.
 
 ### Current versions
 
 The versions of this template (Dockerfile + deps.edn) contains the following versions:
 
 #### 1.0.2
+
+Docker base image: rocker/r-ver:4.0.0
 
 |dependency|version|
 |----------|-------|
