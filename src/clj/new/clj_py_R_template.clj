@@ -1,12 +1,12 @@
-(ns clj.new.clj-template
+(ns clj.new.clj-py-R-template
   (:require [clj.new.templates :refer [renderer project-name name-to-path ->files]]))
 
-(def render (renderer "libpython_clj"))
+(def render (renderer "clj_py_R_template"))
 
 (defn file-map->files [data file-map]
   (apply ->files data (seq file-map)))
 
-(defn libpython-clj-template! [name & {force :force? dir :dir}]
+(defn clj-py-R-template! [name & {force :force? dir :dir}]
   (let [data         {:name      (project-name name)
                       :base      (clojure.string/replace
                                   (project-name name)
@@ -19,14 +19,9 @@
                       :sanitized (name-to-path name)}
         {base :base} data]
 
-    (println (str  "Generating libpython-clj template for "
+    (println (str  "Generating clj-py-R template for "
                    (:name data) " at " (:sanitized data) ".\n\n"
-                   "For the latest information, please check out "
-                   "https://github.com/clj-python/libpython-clj\n"
-                   "or join us for discussion at "
-                   "https://clojurians.zulipchat.com/#narrow/stream/215609-libpython-clj-dev.\n"
-                   "If you run into problems, file a Github issue on the project homepage\nor connect with us at "
-                   "https://clojurians.zulipchat.com/#narrow/stream/215609-libpython-clj-dev/topic/help-wanted"))
+                   ))
 
     (with-bindings {#'clj.new.templates/*force?* force
                     #'clj.new.templates/*dir*    dir}
@@ -38,13 +33,13 @@
         (format  "src/%s/python.clj" (:base data))            (render "python.clj" data)}))))
 
 
-(defn clj-template 
-  ([name] (libpython-clj-template! name))
-  ([name & args] (clj-template name)))
+(defn clj-py-R-template
+  ([name] (clj-py-R-template! name))
+  ([name & args] (clj-py-R-template name)))
 
 (comment
   (newline)
-  (libpython-clj-template!
+  (clj-py-R-template!
    "mydomain.myapp"
    :dir "testdir"
    :force? true)

@@ -1,6 +1,6 @@
 (defproject clj-python/clj-template "1.36.3-SNAPSHOT"
-  :description "libpython bindings to the techascent ecosystem"
-  :url "http://github.com/cnuernber/libpython-clj"
+  :description "Template to quickly create clojure + R + python projects"
+  :url "https://github.com/behrica/clj-py-R-template"
   :license {:name "Eclipse Public License"
             :url  "http://www.eclipse.org/legal/epl-v10.html"}
   :plugins [[lein-tools-deps "0.4.5"]]
