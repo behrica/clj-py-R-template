@@ -35,7 +35,9 @@ clj -A:new clj-py-r-template appcompany.funapp
 
    **NOTE**: this assumes you have `clj-new` configured in you `~/.clojure/deps.edn`
    profile. 
-   
+
+Specific versions of this template can be used by adding something like "-V 1.0.2" to the upper commands
+
 ### Creating docker image
 The template creates a Dockerfile in the project folder.
 The docker image can be build with
