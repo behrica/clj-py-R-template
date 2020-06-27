@@ -2,9 +2,10 @@
 
 This template is the easiest way to use R + python from Clojure.
 
-In the world of Java / Clojure Docker is not that common, because on the JVM platform using Docker instead of a JVM dependency manger (mave, lein, gradle ...) is not really required.
+In the world of Java / Clojure Docker is not that common, because on the JVM platform using Docker instead of a JVM dependency manger (maven, lein, gradle ...) is not really required.
 
-This situation changes, the moment we add R / python into our stack.
+This situation changes, the moment we add R / python into our stack, because both might have operating system dependencies in their packages.
+
 Then Docker can be very helpfull to get started quickly and work in a reproducible manner.
 
 This template contains a Dockerfile which has Clojure and all dependencies for ClojisR + libpython-clj plus a deps.edn file containing working versions of ClojisR and libpython-clj
@@ -33,7 +34,7 @@ clj -Sdeps '{:deps {seancorfield/clj-new {:mvn/version "1.0.199"}}}' \
 clj -A:new clj-py-r-template appcompany.funapp
 ```
 
-   **NOTE**: this assumes you have `clj-new` configured in you `~/.clojure/deps.edn`
+   **NOTE**: this assumes you have `clj-new` configured in your `~/.clojure/deps.edn`
    profile. 
 
 Specific versions of this template can be used by adding something like "-V 1.0.2" to the upper commands
@@ -49,7 +50,7 @@ docker build . -t funapp
 
 The Dockerfile assumes that the local project directory gets mounted into a folder in the container and that it becomes the working directory. The docker image runs a nRepl on port 12345 which can be connected to by any other nRepl compatible client (including emacs+Cider)
 
-A typical command line for running the nRepl in the docker container is then this:
+A typical command line for running the nRepl server in a docker container is then this:
 
 ```
 docker run -ti \
@@ -81,11 +82,12 @@ docker run -ti \
 
 ### Customizing the Docker image (typicall to add R / python libraries)
 
-As in the Docker image one single R version and a single python version is installed,
-libraries can be simply added by adding lines to the Dockerfile, like:
+As in the Docker image one single R version and one single python version is installed,
+libraries can be simply added by adding a few lines to the Dockerfile.
+
 In case native dependencies are required, they can be added via "apt-get install"
 
-The follwoing would add a native library, a python libary and a R package.
+The follwoing would add a native library, a python library and a R package.
 
 
 ```
@@ -97,11 +99,11 @@ RUN Rscript -e "install.packages('dplyr')"
 
 ```
 
-Clojure dependencies are currently specified in the Dockerfile, but can be added to the deps.edn file.
+Clojure dependencies are currently not specified in the Dockerfile, but can be added to the deps.edn file.
 
 ### Current versions
 
-The versions of this template (Dockerfile + deps.edn) contains the following versions:
+The versions of this template contains the following versions of dependencies in  either Dockerfile or deps.end
 
 #### 1.0.2
 
