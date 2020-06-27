@@ -91,6 +91,9 @@ RUN Rscript -e "install.packages('dplyr')"
 
 ```
 
+
+|a|b|
+
 ### Current versions
 
 The current version of this template (Dockerfile + deps.edn) contains the following versions:
