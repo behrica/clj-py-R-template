@@ -5,4 +5,15 @@
         org.clojure/clojure      {:mvn/version "1.10.1"}
         seancorfield/clj-new     {:mvn/version "0.8.6"}
         }
+ :aliases {
+  :deploy {:extra-deps {deps-deploy {:mvn/version "RELEASE"}}
+          :main-opts ["-m" "deps-deploy.deps-deploy" "deploy"
+		      "deps-deploy.jar"]}
+
+ :jar {:extra-deps {pack/pack.alpha
+                     {:git/url "https://github.com/juxt/pack.alpha.git"
+                      :sha "8acf80dd4d6e5173585f5c6fec7af28a310f3ed7"}}
+        :main-opts ["-m" "mach.pack.alpha.skinny" "--no-libs"
+                    "--project-path" "deps-deploy.jar"]}
  }
+}

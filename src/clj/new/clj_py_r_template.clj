@@ -1,12 +1,12 @@
-(ns clj.new.clj-py-R-template
+(ns clj.new.clj-py-r-template
   (:require [clj.new.templates :refer [renderer project-name name-to-path ->files]]))
 
-(def render (renderer "clj_py_R_template"))
+(def render (renderer "clj_py_r_template"))
 
 (defn file-map->files [data file-map]
   (apply ->files data (seq file-map)))
 
-(defn clj-py-R-template! [name & {force :force? dir :dir}]
+(defn clj-py-r-template! [name & {force :force? dir :dir}]
   (let [data         {:name      (project-name name)
                       :base      (clojure.string/replace
                                   (project-name name)
@@ -19,7 +19,7 @@
                       :sanitized (name-to-path name)}
         {base :base} data]
 
-    (println (str  "Generating clj-py-R template for "
+    (println (str  "Generating clj-py-r template for "
                    (:name data) " at " (:sanitized data) ".\n\n"
                    ))
 
@@ -33,13 +33,13 @@
         (format  "src/%s/python.clj" (:base data))            (render "python.clj" data)}))))
 
 
-(defn clj-py-R-template
-  ([name] (clj-py-R-template! name))
-  ([name & args] (clj-py-R-template name)))
+(defn clj-py-r-template
+  ([name] (clj-py-r-template! name))
+  ([name & args] (clj-py-r-template name)))
 
 (comment
   (newline)
-  (clj-py-R-template!
+  (clj-py-r-template!
    "mydomain.myapp"
    :dir "testdir"
    :force? true)
