@@ -58,6 +58,13 @@ docker run -ti \
  
  
  Now Emacs (or any other nRepl client) can be connected to localhost:12345.
+ 
+ Example to use clj as nRepl client:
+ ```
+ clj -Sdeps '{:deps {cider/cider-nrepl {:mvn/version "0.25.2"} }}' -m nrepl.cmdline  --middleware "[cider.nrepl/cider-middleware]" -c -p 12345
+ ```
+ 
+ 
  In this repl, cljisr and libpython.clj work out of the box:
  
  ```
