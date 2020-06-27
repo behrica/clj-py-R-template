@@ -6,10 +6,10 @@
 
  :deps {
         org.clojure/clojure     {:mvn/version "1.10.1"}
-        clj-python/libpython-clj {:mvn/version "1.44"}
+        clj-python/libpython-clj {:mvn/version "1.45"}
         scicloj/clojisr         {:mvn/version  "1.0.0-BETA11"}}
 
  :aliases {
-           :cider-clj {:extra-deps {cider/cider-nrepl {:mvn/version "0.25.0-alpha1"}}
+           :cider-clj {:extra-deps {cider/cider-nrepl {:mvn/version "0.25.2"}}
                        :main-opts ["-m" "nrepl.cmdline" "-b" "0.0.0.0" "-p" "12345" "--middleware" "[cider.nrepl/cider-middleware]"]}
            }}
