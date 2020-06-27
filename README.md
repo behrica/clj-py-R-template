@@ -22,9 +22,9 @@ This template contains a Dockerfile which has all dependencies for ClojisR + lib
 ```bash 
 
 # example
-clj -Sdeps '{:deps {seancorfield/clj-new {:mvn/version "0.8.6"}}}' \
+clj -Sdeps '{:deps {seancorfield/clj-new {:mvn/version "1.0.199"}}}' \
   -m clj-new.create \
-https://github.com/behrica/clj-py-R-template@e7ff4a020eab46ed3931dd39e459a56dd17da4ec \
+https://github.com/behrica/clj-py-R-template@61ff42e5a49fdfd0f90735df42abd30c87cd977b \
   appcompany.funapp
 ```
 
@@ -33,7 +33,7 @@ https://github.com/behrica/clj-py-R-template@e7ff4a020eab46ed3931dd39e459a56dd17
 ```bash 
 # example
 clj -A:new \
-https://github.com/behrica/clj-py-R-template/commit@e7ff4a020eab46ed3931dd39e459a56dd17da4ec \
+https://github.com/behrica/clj-py-R-template/commit@61ff42e5a49fdfd0f90735df42abd30c87cd977b \
   appcompany.funapp
 ```
 
