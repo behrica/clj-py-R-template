@@ -46,7 +46,7 @@ The docker image can be build with
 
 ```
 cd appcompany.funapp
-docker build . -t my-project
+docker build . -t funapp
 ```
 
 The Docker files assumes that the local project directory gets mounted into a folder in the container and that it becomes the working directory. The docker image runs a nRepl on port 12345 which can be connected to by any other nRepl compatible client (including emacs+Cider)
@@ -56,7 +56,7 @@ A typical command line for running the nRepl in the docker container is then thi
 ```
 docker run -ti \
   -v `pwd`:/code -w /code \
- -p 12345:12345 my-project
+ -p 12345:12345 funapp
  ```
  ### Using ClojisR + libpython-clj in repl
  
