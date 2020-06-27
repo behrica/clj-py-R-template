@@ -2,7 +2,7 @@
 
 This template is the easiest way to use R + python from Clojure.
 
-In the world of Java / Clojure Docker is not that common, because on the JVM platform using a dependency manger it is not really required.
+In the world of Java / Clojure Docker is not that common, because on the JVM platform using Docker instead of a JVM dependency manger (mave, lein, gradle ...) is not really required.
 
 This situation changes, the moment we add R / python into our stack.
 Then Docker can be very helpfull to get started quickly and work in a reproducible manner.
