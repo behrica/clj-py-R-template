@@ -23,18 +23,14 @@ This template contains a Dockerfile which has all dependencies for ClojisR + lib
 
 # example
 clj -Sdeps '{:deps {seancorfield/clj-new {:mvn/version "1.0.199"}}}' \
-  -m clj-new.create \
-https://github.com/behrica/clj-py-R-template@61ff42e5a49fdfd0f90735df42abd30c87cd977b \
-  appcompany.funapp
+  -m clj-new.create clj-py-R-template appcompany.funapp
 ```
 
 -    **with** clj-new [installed](https://github.com/seancorfield/clj-new) in user deps.edn (recommended)
 
 ```bash 
 # example
-clj -A:new \
-https://github.com/behrica/clj-py-R-template/commit@61ff42e5a49fdfd0f90735df42abd30c87cd977b \
-  appcompany.funapp
+clj -A:new clj-py-R-template appcompany.funapp
 ```
 
    **NOTE**: this assumes you have `clj-new` configured in you `~/.clojure/deps.edn`
@@ -91,7 +87,7 @@ RUN Rscript -e "install.packages('dplyr')"
 ### Current versions
 
 The current version of this template (Dockerfile + deps.edn) contains the following versions:
-* R: 4.0.2
+* R: 4.0.0
 * RServe: latest from rforge.net
 * python: 3.8.2
 * java:  openjdk 11
