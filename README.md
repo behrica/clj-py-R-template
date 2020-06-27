@@ -23,14 +23,14 @@ This template contains a Dockerfile which has all dependencies for ClojisR + lib
 
 # example
 clj -Sdeps '{:deps {seancorfield/clj-new {:mvn/version "1.0.199"}}}' \
-  -m clj-new.create clj-py-R-template appcompany.funapp
+  -m clj-new.create clj-py-r-template appcompany.funapp
 ```
 
 -    **with** clj-new [installed](https://github.com/seancorfield/clj-new) in user deps.edn (recommended)
 
 ```bash 
 # example
-clj -A:new clj-py-R-template appcompany.funapp
+clj -A:new clj-py-r-template appcompany.funapp
 ```
 
    **NOTE**: this assumes you have `clj-new` configured in you `~/.clojure/deps.edn`
