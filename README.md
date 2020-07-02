@@ -8,7 +8,7 @@ This situation changes, the moment we add R / python into our stack, because bot
 
 Then Docker can be very helpfull to get started quickly and work in a reproducible manner.
 
-This template contains a Dockerfile which has Clojure and all dependencies for ClojisR + libpython-clj plus a deps.edn file containing working versions of ClojisR and libpython-clj
+This template contains a Dockerfile which has Clojure and all dependencies for [ClojisR](https://github.com/scicloj/clojisr) + [libpython-clj](https://github.com/clj-python/libpython-clj) plus a deps.edn file containing working versions of ClojisR and libpython-clj
 
 
 
