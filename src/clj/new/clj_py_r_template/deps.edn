@@ -1,13 +1,14 @@
 {
  :mvn/repos {"clojars" {:url "https://repo.clojars.org/"}
-             "central" {:url "https://repo1.maven.org/maven2/"}}
+             "central" {:url "https://repo1.maven.org/maven2/"}
+             "bedatadriven" {:url "https://nexus.bedatadriven.com/content/groups/public/" }}
 
  :paths ["src" "resources"]
 
  :deps {
         org.clojure/clojure     {:mvn/version "1.10.1"}
         clj-python/libpython-clj {:mvn/version "1.45"}
-        scicloj/clojisr         {:mvn/version  "1.0.0-BETA11"}}
+        scicloj/clojisr         {:mvn/version  "1.0.0-BETA15"}}
 
  :aliases {
            :cider-clj {:extra-deps {cider/cider-nrepl {:mvn/version "0.25.2"}}
