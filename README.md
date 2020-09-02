@@ -98,8 +98,8 @@ RUN pip3 install pandas
 RUN Rscript -e "install.packages('dplyr')"
 
 ```
-
-Clojure dependencies are currently not specified in the Dockerfile, but can be added to the deps.edn file.
+### Changing Clojure dependencies
+Clojure dependencies are currently not specified in the Dockerfile, but can be added as usual to the deps.edn file.
 
 ### Current versions
 
