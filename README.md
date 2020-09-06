@@ -135,7 +135,7 @@ Docker base image: rocker/r-ver:4.0.0
 |scicloj/clojisr |1.0.0-BETA11|
 |cider-nrepl | 0.25.2|
 
-#### 1.0.4
+#### 1.0.5
 
 Docker base image: rocker/r-ver:4.0.2
 
