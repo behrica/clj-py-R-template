@@ -149,3 +149,25 @@ Docker base image: rocker/r-ver:4.0.2
 |clj-python/libpython-clj| 1.45|
 |scicloj/clojisr |1.0.0-BETA15|
 |cider-nrepl | 0.25.2|
+
+
+#### 1.1.0 
+
+Docker base image: rocker/r-ver:4.0.3
+
+|dependency|version|
+|----------|-------|
+| clojure | 1.10.1|
+|R         | 4.0.3 |
+|java |  openjdk 11|
+|python| 3.8.6|
+|RServe| 1.8-7|
+|tablecloth  | 5.00-beta-5a |
+|tech.ml.dataset | 5.00-beta-5 |
+|clj-python/libpython-clj| 2.0.0-alpha-6|
+|scicloj/clojisr |1.0.0-BETA16|
+|notespace | 3-alpha2 |
+|cider-nrepl | 0.25.5|
+
+
+
