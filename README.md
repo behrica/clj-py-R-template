@@ -31,7 +31,7 @@ clj -Sdeps '{:deps {seancorfield/clj-new {:mvn/version "1.0.199"}}}' \
 
 ```bash 
 # example
-clj -A:new clj-py-r-template appcompany.funapp
+clj  -X:new create :template clj-py-r-template :name appcompany.funapp
 ```
 
    **NOTE**: this assumes you have `clj-new` configured in your `~/.clojure/deps.edn`

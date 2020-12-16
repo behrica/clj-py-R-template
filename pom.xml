@@ -18,7 +18,7 @@
     <url>https://github.com/behrica/clj-py-r-template</url>
     <connection>scm:git:git://github.com/behrica/clj-py-r-template.git</connection>
     <developerConnection>scm:git:ssh://git@github.com/behrica/clj-py-r-template.git</developerConnection>
-    <tag>b90c79bc689e589d7c94c26894deca67cdd78e19</tag>
+    <tag>0ed0f3865d229c7d107fb95395c9677b3bbf6b2b</tag>
   </scm>
   <build>
     <sourceDirectory>src</sourceDirectory>
