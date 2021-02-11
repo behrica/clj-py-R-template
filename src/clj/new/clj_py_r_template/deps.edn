@@ -7,13 +7,14 @@
 
  :deps {
         org.clojure/clojure      {:mvn/version "1.10.1"}
-        clj-python/libpython-clj {:mvn/version "2.00-alpha-6"}
+        clj-python/libpython-clj {:mvn/version "2.00-alpha-7"}
         scicloj/clojisr          {:mvn/version "1.0.0-BETA16"}
-        scicloj/tablecloth       {:mvn/version "5.00-beta-5a"}
+        scicloj/tablecloth       {:mvn/version "5.00-beta-28"}
         scicloj/notespace        {:mvn/version "3-alpha2"}
+        techascent/tech.ml       {:mvn/version "5.00-beta-14"} 
         }
 
  :aliases {
-           :cider-clj {:extra-deps {cider/cider-nrepl {:mvn/version "0.25.5"}}
+           :cider-clj {:extra-deps {cider/cider-nrepl {:mvn/version "0.25.8"}}
                        :main-opts ["-m" "nrepl.cmdline" "-b" "0.0.0.0" "-p" "12345" "--middleware" "[cider.nrepl/cider-middleware]"]}
            }}
