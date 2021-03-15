@@ -2,8 +2,8 @@
  :paths ["src"]
 
  :deps {
-        org.clojure/clojure      {:mvn/version "1.10.1"}
-        seancorfield/clj-new     {:mvn/version "0.8.6"}
+        org.clojure/clojure      {:mvn/version "1.10.2"}
+        seancorfield/clj-new     {:mvn/version "1.1.264"}
         }
  :aliases {
   :deploy {:extra-deps {deps-deploy {:mvn/version "RELEASE"}}
@@ -12,7 +12,8 @@
 
  :jar {:extra-deps {pack/pack.alpha
                      {:git/url "https://github.com/juxt/pack.alpha.git"
-                      :sha "8acf80dd4d6e5173585f5c6fec7af28a310f3ed7"}}
+                      :sha "e518d9b2b70f4292c9988d2792b8667d88a6f4df"}
+org.clojure/tools.deps.alpha {:mvn/version "0.7.541"}}
         :main-opts ["-m" "mach.pack.alpha.skinny" "--no-libs"
                     "--project-path" "deps-deploy.jar"]}
  }

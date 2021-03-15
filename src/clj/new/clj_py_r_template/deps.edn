@@ -6,15 +6,19 @@
  :paths ["src" "resources"]
 
  :deps {
-        org.clojure/clojure      {:mvn/version "1.10.1"}
-        clj-python/libpython-clj {:mvn/version "2.00-alpha-7"}
-        scicloj/clojisr          {:mvn/version "1.0.0-BETA16"}
-        scicloj/tablecloth       {:mvn/version "5.00-beta-28"}
-        scicloj/notespace        {:mvn/version "3-alpha2"}
-        techascent/tech.ml       {:mvn/version "5.00-beta-14"} 
+        org.clojure/clojure      {:mvn/version "1.10.3"}
+        clj-python/libpython-clj {:mvn/version "2.00-beta-8"}
+        scicloj/clojisr          {:mvn/version "1.0.0-BETA18"}
+        scicloj/tablecloth       {:mvn/version "5.05"}
+        scicloj/notespace        {:mvn/version "3-beta4"}
+        techascent/tech.ml       {:mvn/version "5.01"}
+        scicloj/metamorph        {:mvn/version "0.1.0-alpha1"}
+        scicloj/sklearn-clj      {:mvn/version "0.2.5"}
+        scicloj/metamorph.ml     {:mvn/version "0.1.0-alpha1"}
+
         }
 
  :aliases {
-           :cider-clj {:extra-deps {cider/cider-nrepl {:mvn/version "0.25.8"}}
+           :cider-clj {:extra-deps {cider/cider-nrepl {:mvn/version "0.25.9"}}
                        :main-opts ["-m" "nrepl.cmdline" "-b" "0.0.0.0" "-p" "12345" "--middleware" "[cider.nrepl/cider-middleware]"]}
            }}
