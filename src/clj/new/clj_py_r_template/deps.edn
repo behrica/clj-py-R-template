@@ -7,7 +7,7 @@
 
  :deps {
         org.clojure/clojure      {:mvn/version "1.10.3"}
-        clj-python/libpython-clj {:mvn/version "2.00-beta-8"}
+        clj-python/libpython-clj {:mvn/version "2.00-beta-12"}
         scicloj/clojisr          {:mvn/version "1.0.0-BETA18"}
         scicloj/tablecloth       {:mvn/version "5.05"}
         scicloj/notespace        {:mvn/version "3-beta4"}
