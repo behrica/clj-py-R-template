@@ -1,5 +1,54 @@
 # Libpython-clj + ClojisR  clj-template
 
+# Quickstart - Get a working clojure repl supporting python and R in 5 lines
+
+Only requirements is [clojure](https://clojure.org/guides/getting_started) and [docker](https://docs.docker.com/get-docker) installed.
+
+Create Clojure demo project from template
+
+```bash
+clojure -Sdeps '{:deps {com.github.seancorfield/clj-new {:mvn/version "1.1.331"}}}' -M -m clj-new.create clj-py-r-template me/my-app
+```
+
+Make and run Docker image, which starts a repl on port 12345 in a docker container
+
+```bash
+cd my-app
+docker build -t my-app --build-arg USER_ID=$(id -u) --build-arg GROUP_ID=$(id -g) .
+docker run -it --rm -v $HOME/.m2:/home/user/.m2 -v "$(pwd):/workdir" -p  12345:12345 my-app
+```
+
+Connect repl to it
+```bash
+clj -Sdeps '{:deps {cider/cider-nrepl {:mvn/version "0.25.2"} }}' -m nrepl.cmdline  --middleware "[cider.nrepl/cider-middleware]" -c -p 12345
+```
+
+Have fun with some interop code:
+
+```clojure
+;; go from clj -> python -> clj -> R
+(require '[libpython-clj2.require :refer [require-python]]
+         '[libpython-clj2.python :as py]
+         '[clojisr.v1.r :as r :refer [r require-r]])
+
+(require-python '[numpy :as np])
+(require-r '[base :as base-r])
+
+(def r-matrix
+ (-> (np/array [[1 2 3 4] [5 6 7 8] [9 10 11 12]])
+     (py/->jvm)
+     (r/clj->java->r)
+     (base-r/simplify2array)
+     (base-r/t)))
+
+(println
+ (base-r/dim r-matrix))
+```
+
+
+
+# Motivation
+
 This template is the easiest way to use R + python from Clojure.
 
 In the world of Java / Clojure Docker is not that common, because on the JVM platform using Docker instead of a JVM dependency manger (maven, lein, gradle ...) is not really required.
