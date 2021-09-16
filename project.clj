@@ -1,4 +1,4 @@
-(defproject clj-py-r-template/clj-template "1.2.0"
+(defproject clj-py-r-template/clj-template "1.3.0"
   :description "Template to quickly create clojure data sciene projects with  R + python "
   :url "https://github.com/behrica/clj-py-R-template"
   :license {:name "Eclipse Public License"

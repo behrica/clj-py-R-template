@@ -20,15 +20,18 @@
         {base :base} data]
 
     (println (str  "Generating clj-py-r template for "
-                   (:name data) " at " (:sanitized data) ".\n\n"
-                   ))
+                   (:name data) " at " (:sanitized data) ".\n\n"))
+                   
 
     (with-bindings {#'clj.new.templates/*force?* force
                     #'clj.new.templates/*dir*    dir}
       (file-map->files
        data
        {"Dockerfile"                                           (render "Dockerfile" data)
-        "deps.edn"                                            (render "deps.edn" data)}))))
+        "deps.edn"                                            (render "deps.edn" data)
+        "src/try_py_R.clj" (render "src/try_py_R.clj" data)}))))
+
+
 
 
 (defn clj-py-r-template
@@ -40,5 +43,5 @@
   (clj-py-r-template!
    "mydomain.myapp"
    :dir "testdir"
-   :force? true)
-  )
+   :force? true))
+  

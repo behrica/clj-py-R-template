@@ -1,24 +1,24 @@
 {
  :mvn/repos {"clojars" {:url "https://repo.clojars.org/"}
              "central" {:url "https://repo1.maven.org/maven2/"}
-             "bedatadriven" {:url "https://nexus.bedatadriven.com/content/groups/public/" }}
+             "bedatadriven" {:url "https://nexus.bedatadriven.com/content/groups/public/"}}
 
  :paths ["src" "resources"]
 
  :deps {
         org.clojure/clojure      {:mvn/version "1.10.3"}
-        clj-python/libpython-clj {:mvn/version "2.00-beta-12"}
-        scicloj/clojisr          {:mvn/version "1.0.0-BETA18"}
-        scicloj/tablecloth       {:mvn/version "5.05"}
-        scicloj/notespace        {:mvn/version "3-beta4"}
-        techascent/tech.ml       {:mvn/version "5.01"}
-        scicloj/metamorph        {:mvn/version "0.1.0-alpha1"}
-        scicloj/sklearn-clj      {:mvn/version "0.2.5"}
-        scicloj/metamorph.ml     {:mvn/version "0.1.0-alpha1"}
+        clj-python/libpython-clj {:mvn/version "2.000"}
+        scicloj/clojisr          {:mvn/version "1.0.0-BETA19"}
+        scicloj/tablecloth       {:mvn/version "6.012"}
+        scicloj/notespace        {:mvn/version "3-beta9"}
+        scicloj/scicloj.ml       {:mvn/version "0.1.0-beta4"}}
 
-        }
+
+
+
+        
 
  :aliases {
            :cider-clj {:extra-deps {cider/cider-nrepl {:mvn/version "0.25.9"}}
-                       :main-opts ["-m" "nrepl.cmdline" "-b" "0.0.0.0" "-p" "12345" "--middleware" "[cider.nrepl/cider-middleware]"]}
-           }}
+                       :main-opts ["-m" "nrepl.cmdline" "-b" "0.0.0.0" "-p" "12345" "--middleware" "[cider.nrepl/cider-middleware]"]}}}
+           

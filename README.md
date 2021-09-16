@@ -45,7 +45,8 @@ The docker image can be build with
 
 ```
 cd appcompany.funapp
-docker build . -t funapp
+docker build -t funapp --build-arg USER_ID=$(id -u) --build-arg GROUP_ID=$(id -g) .
+
 ```
 
 The Dockerfile assumes that the local project directory gets mounted into a folder in the container and that it becomes the working directory. The docker image runs a nRepl on port 12345 which can be connected to by any other nRepl compatible client (including emacs+Cider)
@@ -53,9 +54,7 @@ The Dockerfile assumes that the local project directory gets mounted into a fold
 A typical command line for running the nRepl server in a docker container is then this:
 
 ```
-docker run -ti \
-  -v `pwd`:/code -w /code \
- -p 12345:12345 funapp
+docker run -it --rm -v "$(pwd):/code" -p 12345:12345 funapp
  ```
  ### Using ClojisR + libpython-clj in repl
  
@@ -87,8 +86,7 @@ libraries can be simply added by adding a few lines to the Dockerfile.
 
 In case native dependencies are required, they can be added via "apt-get install"
 
-The follwoing would add a native library, a python library and a R package.
-
+The following would add a native library, a python library and a R package.
 
 ```
 RUN apt-get install libssl-dev
@@ -98,12 +96,13 @@ RUN pip3 install pandas
 RUN Rscript -e "install.packages('dplyr')"
 
 ```
+
 ### Changing Clojure dependencies
 Clojure dependencies are currently not specified in the Dockerfile, but can be added as usual to the deps.edn file.
 
 ### Current versions
 
-The versions of this template contains the following versions of dependencies in  either Dockerfile or deps.end
+The versions of this template contains the following versions of dependencies in either Dockerfile or deps.end
 
 #### 1.0.2
 
@@ -221,5 +220,39 @@ Docker base image: rocker/r-ver:4.0.3
 |clj-python/libpython-clj| 2.0.0-beta-12|
 |scicloj/clojisr |1.0.0-BETA18|
 |notespace | 3-beta4 |
+|cider-nrepl | 0.25.9|
+
+### 1.2.0
+
+|dependency|version|
+|----------|-------|
+| clojure | 1.10.1|
+|R         | 4.0.4 |
+|java |  openjdk 11|
+|python| 3.9.2|
+|RServe| 1.8-7|
+|tablecloth  | 5.05|
+|tech.ml.dataset | 5.01 |
+|tech.ml   |5.05 | 
+|clj-python/libpython-clj| 2.0.0-beta-12|
+|scicloj/clojisr |1.0.0-BETA18|
+|notespace | 3-beta4 |
+|cider-nrepl | 0.25.9|
+
+### 1.3.0
+
+|dependency|version|
+|----------|-------|
+| clojure | 1.10.3.967|
+|R         | 4.1.1 |
+|java |  openjdk 11|
+|python| 3.9.5|
+|RServe| 1.8-7|
+|tablecloth  | 6.012|
+|tech.ml.dataset | 6.012 |
+|clj-python/libpython-clj| 2.0.0|
+|scicloj.ml| 0.1.0-beta4|
+|scicloj/clojisr |1.0.0-BETA19|
+|notespace | 3-beta9 |
 |cider-nrepl | 0.25.9|
 
