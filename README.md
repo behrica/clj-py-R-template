@@ -70,7 +70,7 @@ docker run -it --rm -v "$(pwd):/code" -p 12345:12345 funapp
  In this connected repl , cljisr and libpython.clj work out of the box:
  
  ```
-(require '[libpython-clj.require :refer [require-python]])
+(require '[libpython-clj2.require :refer [require-python]])
 (require-python '[os :as os])
 (os/getcwd)
 
