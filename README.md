@@ -4,13 +4,13 @@
 
 Only requirements is [clojure](https://clojure.org/guides/getting_started) and [docker](https://docs.docker.com/get-docker) installed.
 
-Create Clojure demo project from template
+1. Create Clojure demo project from template
 
 ```bash
 clojure -Sdeps '{:deps {com.github.seancorfield/clj-new {:mvn/version "1.1.331"}}}' -M -m clj-new.create clj-py-r-template me/my-app
 ```
 
-Make and run Docker image, which starts a repl on port 12345 in a docker container
+2.Build and run Docker image, which starts a repl on port 12345 in a docker container
 
 ```bash
 cd my-app
@@ -18,12 +18,12 @@ docker build -t my-app --build-arg USER_ID=$(id -u) --build-arg GROUP_ID=$(id -g
 docker run -it --rm -v $HOME/.m2:/home/user/.m2 -v "$(pwd):/workdir" -p  12345:12345 my-app
 ```
 
-Connect repl to it
+3. Connect repl to it
 ```bash
 clj -Sdeps '{:deps {cider/cider-nrepl {:mvn/version "0.25.2"} }}' -m nrepl.cmdline  --middleware "[cider.nrepl/cider-middleware]" -c -p 12345
 ```
 
-Have fun with some interop code:
+😀 Have fun with some interop code: 😀
 
 ```clojure
 ;; go from clj -> python -> clj -> R
