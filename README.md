@@ -1,6 +1,55 @@
 # Clojure polyglot  clj-template
 
+# Quickstart - Get a working clojure repl supporting python, R and Julia in 5 lines
+
+Only requirements is [clojure](https://clojure.org/guides/getting_started) and [docker](https://docs.docker.com/get-docker) installed.
+
+1. Create Clojure demo project from template
+
+```bash
+clojure -Sdeps '{:deps {com.github.seancorfield/clj-new {:mvn/version "1.1.331"}}}' -M -m clj-new.create clj-py-r-template me/my-app
+```
+
+2.Build and run Docker image, which starts a headless repl on port 12345 in a docker container
+
+```bash
+cd my-app
+docker build -t my-app --build-arg USER_ID=$(id -u) --build-arg GROUP_ID=$(id -g) .
+docker run -it --rm -v $HOME/.m2:/home/user/.m2 -v "$(pwd):/workdir" -p  12345:12345 my-app
+```
+
+3. Connect normal repl to it
+```bash
+clj -Sdeps '{:deps {cider/cider-nrepl {:mvn/version "0.25.2"} }}' -m nrepl.cmdline  --middleware "[cider.nrepl/cider-middleware]" -c -p 12345
+```
+
+😀 Have fun with some interop code: 😀
+
+```clojure
+;; go from clj -> python -> clj -> R
+(require '[libpython-clj2.require :refer [require-python]]
+         '[libpython-clj2.python :as py]
+         '[clojisr.v1.r :as r :refer [r require-r]])
+
+(require-python '[numpy :as np])
+(require-r '[base :as base-r])
+
+(def r-matrix
+ (-> (np/array [[1 2 3 4] [5 6 7 8] [9 10 11 12]])
+     (py/->jvm)
+     (r/clj->java->r)
+     (base-r/simplify2array)
+     (base-r/t)))
+
+(println
+ (base-r/dim r-matrix))
+```
+
+
+
+# Motivation
 This template is the easiest way to use R, python and Julia from Clojure.
+
 
 In the world of Java / Clojure Docker is not that common, because on the JVM platform using Docker instead of a JVM dependency manger (maven, lein, gradle ...) is not really required.
 
@@ -8,7 +57,8 @@ This situation changes, the moment we add R / python or Julia into our stack, be
 
 Then Docker can be very helpfull to get started quickly and work in a reproducible manner.
 
-This template contains a Dockerfile which has Clojure and all dependencies for [ClojisR](https://github.com/scicloj/clojisr) + [libpython-clj](https://github.com/clj-python/libpython-clj) plus a deps.edn file containing working versions of ClojisR and libpython-clj
+This template contains a Dockerfile which has Clojure and all dependencies for [ClojisR](https://github.com/scicloj/clojisr), [libpython-clj](https://github.com/clj-python/libpython-clj) and [julia-clj](https://github.com/cnuernber/libjulia-clj)
+plus a deps.edn file containing working versions of ClojisR,libpython-clj and Julia-clj.
 
 
 
@@ -67,7 +117,7 @@ docker run -it --rm -v "$(pwd):/code" -p 12345:12345 funapp
  ```
  
  
- In this connected repl , cljisr,libpython-clj amd julia-clj work out of the box:
+ In this connected repl  cljisr, libpython-clj and julia-clj work out of the box:
  
  ```
 (require '[libpython-clj2.require :refer [require-python]])
@@ -84,7 +134,7 @@ docker run -it --rm -v "$(pwd):/code" -p 12345:12345 funapp
 
  ```
 
-### Customizing the Docker image (typicall to add R / python libraries)
+### Customizing the Docker image (typicall to add R / python /Julia libraries)
 
 As in the Docker image one single R version and one single python version is installed,
 libraries can be simply added by adding a few lines to the Dockerfile.
@@ -273,7 +323,7 @@ Docker base image: rocker/r-ver:4.0.3
 |tablecloth  | 6.012|
 |tech.ml.dataset | 6.012 |
 |clj-python/libpython-clj| 2.0.0|
-|jlia-clj| 0.0.7|
+|julia-clj| 0.0.7|
 |scicloj.ml| 0.1.0-beta4|
 |scicloj/clojisr |1.0.0-BETA19|
 |notespace | 3-beta9 |
