@@ -4,7 +4,7 @@
   <groupId>clj-py-r-template</groupId>
   <artifactId>clj-template</artifactId>
   <packaging>jar</packaging>
-  <version>1.3.0</version>
+  <version>1.4.0</version>
   <name>clj-template</name>
   <description>Template to quickly create clojure data sciene projects with  R + python </description>
   <url>https://github.com/behrica/clj-py-R-template</url>
