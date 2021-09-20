@@ -11,7 +11,8 @@
         scicloj/clojisr          {:mvn/version "1.0.0-BETA19"}
         scicloj/tablecloth       {:mvn/version "6.012"}
         scicloj/notespace        {:mvn/version "3-beta9"}
-        scicloj/scicloj.ml       {:mvn/version "0.1.0-beta4"}}
+        scicloj/scicloj.ml       {:mvn/version "0.1.0-beta4"}
+        cnuernber/libjulia-clj   {:mvn/version "0.07"}}
 
 
 
