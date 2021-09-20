@@ -12,7 +12,6 @@ RUN pip3 install -U numpy wheel scikit-learn
 RUN git clone https://git.savannah.gnu.org/git/apl.git
 RUN cd apl/trunk && ./configure && make develop_lib && make install
 
-# leav this at th end
 ARG USER_ID
 ARG GROUP_ID
 
@@ -32,6 +31,9 @@ RUN curl -O https://julialang-s3.julialang.org/bin/linux/x64/1.5/julia-1.5.3-lin
   && tar -xvzf julia-1.5.3-linux-x86_64.tar.gz
 
 ENV JULIA_HOME=/home/user/julia-1.5.3
+
+# is this a hack ?
+RUN cp /usr/local/bin/APserver /home/user/
 
 
 COPY deps.edn .
