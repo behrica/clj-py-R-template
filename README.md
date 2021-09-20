@@ -1,10 +1,10 @@
-# Libpython-clj + ClojisR  clj-template
+# Clojure polyglot  clj-template
 
-This template is the easiest way to use R + python from Clojure.
+This template is the easiest way to use R, python and Julia from Clojure.
 
 In the world of Java / Clojure Docker is not that common, because on the JVM platform using Docker instead of a JVM dependency manger (maven, lein, gradle ...) is not really required.
 
-This situation changes, the moment we add R / python into our stack, because both might have operating system dependencies in their packages.
+This situation changes, the moment we add R / python or Julia into our stack, because both might have operating system dependencies in their packages.
 
 Then Docker can be very helpfull to get started quickly and work in a reproducible manner.
 
@@ -15,7 +15,7 @@ This template contains a Dockerfile which has Clojure and all dependencies for [
 
 ## Usage
 
-Clojure projects including libpython-clj + ClojisR can now be created quickly in 2 ways from the latest stable template:
+Clojure projects including libpython-clj, ClojisR and Julia-clj can now be created quickly in 2 ways from the latest stable template:
 
 
 -   **without** clj-new installed in user deps.edn
@@ -56,7 +56,7 @@ A typical command line for running the nRepl server in a docker container is the
 ```
 docker run -it --rm -v "$(pwd):/code" -p 12345:12345 funapp
  ```
- ### Using ClojisR + libpython-clj in repl
+ ### Using ClojisR,libpython-clj and Jluli-clj in repl
  
  
  Now Emacs (or any other nRepl client) can be connected to localhost:12345.
@@ -67,16 +67,21 @@ docker run -it --rm -v "$(pwd):/code" -p 12345:12345 funapp
  ```
  
  
- In this connected repl , cljisr and libpython.clj work out of the box:
+ In this connected repl , cljisr,libpython-clj amd julia-clj work out of the box:
  
  ```
-(require '[libpython-clj.require :refer [require-python]])
+(require '[libpython-clj2.require :refer [require-python]])
 (require-python '[os :as os])
 (os/getcwd)
 
 (require '[clojisr.v1.r :refer [r]])
 (r "1+1")
          
+(require '[libjulia-clj.julia :as julia])
+(julia/initialize!)
+(def ones-fn (julia/jl "Base.ones"))
+(ones-fn 3 4)
+
  ```
 
 ### Customizing the Docker image (typicall to add R / python libraries)
