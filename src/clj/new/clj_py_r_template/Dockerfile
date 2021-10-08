@@ -1,5 +1,5 @@
 FROM rocker/r-ver:4.1.1
-RUN apt-get update && apt-get -y install openjdk-11-jdk curl rlwrap libssl-dev build-essential zlib1g-dev  libncurses5-dev libgdbm-dev libnss3-dev  libreadline-dev libffi-dev git automake
+RUN apt-get update && apt-get -y install openjdk-11-jdk curl rlwrap libssl-dev build-essential zlib1g-dev  libncurses5-dev libgdbm-dev libnss3-dev  libreadline-dev libffi-dev git automake libbz2-dev
 RUN curl -O https://www.python.org/ftp/python/3.9.5/Python-3.9.5.tar.xz
 RUN tar xf Python-3.9.5.tar.xz
 RUN cd Python-3.9.5 && ./configure --enable-shared --with-ensurepip=install && make && make install && ldconfig
