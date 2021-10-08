@@ -4,7 +4,7 @@
 
 Only requirements is [clojure](https://clojure.org/guides/getting_started) and [docker](https://docs.docker.com/get-docker) installed.
 
-1. Create Clojure demo project from template
+1. Create Clojure polyglot project from template
 
 ```bash
 clojure -Sdeps '{:deps {com.github.seancorfield/clj-new {:mvn/version "1.1.331"}}}' -M -m clj-new.create clj-py-r-template me/my-app
