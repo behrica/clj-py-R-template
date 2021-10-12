@@ -12,6 +12,7 @@ clojure -Sdeps '{:deps {com.github.seancorfield/clj-new {:mvn/version "1.1.331"}
 
 2.Build and run Docker image, which starts a headless repl on port 12345 in a docker container
 
+This assumes a Linux OS and bash as shell. It might be slide different on other platforms or shell.
 ```bash
 cd my-app
 docker build -t my-app --build-arg USER_ID=$(id -u) --build-arg GROUP_ID=$(id -g) .
