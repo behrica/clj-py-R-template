@@ -13,6 +13,9 @@ clojure -Sdeps '{:deps {com.github.seancorfield/clj-new {:mvn/version "1.1.331"}
 2.Build and run Docker image, which starts a headless repl on port 12345 in a docker container
 
 This assumes a Linux OS and bash as shell. It might be slidely different on other platforms or shell.
+
+
+
 ```bash
 cd my-app
 docker build -t my-app --build-arg USER_ID=$(id -u) --build-arg GROUP_ID=$(id -g) .
@@ -46,7 +49,16 @@ clj -Sdeps '{:deps {cider/cider-nrepl {:mvn/version "0.25.2"} }}' -m nrepl.cmdli
  (base-r/dim r-matrix))
 ```
 
+# For non Linux users:
 
+The `docker run` commands above assume a Linux OS and bash as shell
+The same is true for the Dockerfile produced by this template.
+Line 15-19 of teh Dockerfile 
+https://github.com/behrica/clj-py-r-template/blob/2f1ec12690c09917c4c7608d6f625e8032d0d294/src/clj/new/clj_py_r_template/Dockerfile#L15
+and the `docker run` id settings play together and this works as-is only on Linux. 
+
+Line 15-19 of the Dockerfile and the `-build-arg USER_ID=$(id -u) --build-arg GROUP_ID=$(id -g)` are only  needed if volume is mounted as in the example.
+Without these, any file written to the shared volume by the container gets wrong permissions, which is unconvinient.
 
 # Motivation
 This template is the easiest way to use R, python and Julia from Clojure.
