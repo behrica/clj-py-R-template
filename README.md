@@ -7,7 +7,7 @@ Only requirements is [clojure](https://clojure.org/guides/getting_started) and [
 1. Create Clojure polyglot project from template
 
 ```bash
-clojure -Sdeps '{:deps {com.github.seancorfield/clj-new {:mvn/version "1.1.331"}}}' -M -m clj-new.create clj-py-r-template me/my-app
+clojure -Sdeps '{:deps {com.github.seancorfield/clj-new {:mvn/version "1.2.362"}}}' -M -m clj-new.create clj-py-r-template me/my-app
 ```
 
 2.Build and run Docker image, which starts a headless repl on port 12345 in a docker container
