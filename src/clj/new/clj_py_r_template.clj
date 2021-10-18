@@ -3,8 +3,10 @@
 
 (def render (renderer "clj_py_r_template"))
 
+
 (defn file-map->files [data file-map]
-  (apply ->files data (seq file-map)))
+  (apply ->files data file-map))
+
 
 (defn clj-py-r-template! [name & {force :force? dir :dir}]
   (let [data         {:name      (project-name name)
@@ -23,13 +25,19 @@
                    (:name data) " at " (:sanitized data) ".\n\n"))
                    
 
-    (with-bindings {#'clj.new.templates/*force?* force
-                    #'clj.new.templates/*dir*    dir}
+
+        
+
+    (with-bindings {#'clj.new.templates/*force?* force}
+                #'clj.new.templates/*dir*    dir
       (file-map->files
        data
-       {"Dockerfile"                                           (render "Dockerfile" data)
-        "deps.edn"                                            (render "deps.edn" data)
-        "src/try_py_R.clj" (render "src/try_py_R.clj" data)}))))
+       [["docker_build.sh" (render "docker_build.sh" data) :executable true]
+        ["docker_repl.sh" (render "docker_repl.sh" data) :executable true]
+        ["docker_run_xxx.sh" (render "docker_run_xxx.sh" data) :executable true]
+        ["Dockerfile" (render "Dockerfile" data)]
+        ["deps.edn" (render "deps.edn" data)]
+        ["src/try_py_R.clj" (render "src/try_py_R.clj" data)]]))))
 
 
 
@@ -41,7 +49,7 @@
 (comment
   (newline)
   (clj-py-r-template!
-   "mydomain.myapp"
+   "mydomain.myapp1"
    :dir "testdir"
    :force? true))
   

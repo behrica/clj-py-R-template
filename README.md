@@ -57,7 +57,8 @@ This situation changes, the moment we add R / python or Julia into our stack, be
 
 Then Docker can be very helpfull to get started quickly and work in a reproducible manner.
 
-This template contains a Dockerfile which has Clojure and all dependencies for [ClojisR](https://github.com/scicloj/clojisr), [libpython-clj](https://github.com/clj-python/libpython-clj) and [julia-clj](https://github.com/cnuernber/libjulia-clj)
+This template contains a Dockerfile which has Clojure and all dependencies for [ClojisR](https://github.com/scicloj/clojisr), [libpython-clj](https://github.com/clj-python/libpython-clj), [julia-clj](https://github.com/cnuernber/libjulia-clj) and [
+libapl-clj](https://github.com/jjtolton/libapl-clj)
 plus a deps.edn file containing working versions of ClojisR,libpython-clj and Julia-clj.
 
 
@@ -106,7 +107,7 @@ A typical command line for running the nRepl server in a docker container is the
 ```
 docker run -it --rm -v "$(pwd):/code" -p 12345:12345 funapp
  ```
- ### Using ClojisR,libpython-clj and Jluli-clj in repl
+ ### Using ClojisR,libpython-clj,julia-clj and libapl-clj in repl
  
  
  Now Emacs (or any other nRepl client) can be connected to localhost:12345.
@@ -117,7 +118,7 @@ docker run -it --rm -v "$(pwd):/code" -p 12345:12345 funapp
  ```
  
  
- In this connected repl  cljisr, libpython-clj and julia-clj work out of the box:
+ In this connected repl  cljisr, libpython-clj , julia-clj and libapl-clj work out of the box:
  
  ```
 (require '[libpython-clj2.require :refer [require-python]])
@@ -132,9 +133,11 @@ docker run -it --rm -v "$(pwd):/code" -p 12345:12345 funapp
 (def ones-fn (julia/jl "Base.ones"))
 (ones-fn 3 4)
 
+(require '[libapl-clj.apl :as apl])
+(apl/+ [1 2 3] [4 5 6])
  ```
 
-### Customizing the Docker image (typicall to add R / python /Julia libraries)
+### Customizing the Docker image (typicall to add some libraries)
 
 As in the Docker image one single R version and one single python version is installed,
 libraries can be simply added by adding a few lines to the Dockerfile.
@@ -312,6 +315,26 @@ Docker base image: rocker/r-ver:4.0.3
 |cider-nrepl | 0.25.9|
 
 ### 1.4.0
+
+|dependency|version|
+|----------|-------|
+| clojure | 1.10.3.981|
+|R         | 4.1.1 |
+|java |  openjdk 11|
+|python| 3.9.5|
+|RServe| 1.8-7|
+|tablecloth  | 6.012|
+|tech.ml.dataset | 6.012 |
+|clj-python/libpython-clj| 2.0.0|
+|julia-clj| 0.0.7|
+|scicloj.ml| 0.1.0-beta4|
+|scicloj/clojisr |1.0.0-BETA19|
+|notespace | 3-beta9 |
+|cider-nrepl | 0.25.9|
+
+### 1.5.0
+
+Added scripts for Docker
 
 |dependency|version|
 |----------|-------|
