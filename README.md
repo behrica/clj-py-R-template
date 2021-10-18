@@ -1,3 +1,5 @@
+[![Clojars Project](https://img.shields.io/clojars/v/clj-py-r-template/clj-template.svg)](https://clojars.org/clj-py-r-template/clj-template)
+
 # Clojure polyglot  clj-template
 
 # Quickstart - Get a working clojure repl supporting python, R and Julia in 5 lines
