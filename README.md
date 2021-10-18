@@ -4,13 +4,17 @@
 
 Only requirements is [clojure](https://clojure.org/guides/getting_started) and [docker](https://docs.docker.com/get-docker) installed.
 
-1. Create Clojure demo project from template
+1. Create Clojure polyglot project from template
 
 ```bash
-clojure -Sdeps '{:deps {com.github.seancorfield/clj-new {:mvn/version "1.1.331"}}}' -M -m clj-new.create clj-py-r-template me/my-app
+clojure -Sdeps '{:deps {com.github.seancorfield/clj-new {:mvn/version "1.2.362"}}}' -M -m clj-new.create clj-py-r-template me/my-app
 ```
 
 2.Build and run Docker image, which starts a headless repl on port 12345 in a docker container
+
+This assumes a Linux OS and bash as shell. It might be slidely different on other platforms or shell.
+
+
 
 ```bash
 cd my-app
@@ -45,7 +49,16 @@ clj -Sdeps '{:deps {cider/cider-nrepl {:mvn/version "0.25.2"} }}' -m nrepl.cmdli
  (base-r/dim r-matrix))
 ```
 
+# For non Linux users:
 
+The `docker run` commands above assume a Linux OS and bash as shell
+The same is true for the Dockerfile produced by this template.
+Line 15-19 of teh Dockerfile 
+https://github.com/behrica/clj-py-r-template/blob/2f1ec12690c09917c4c7608d6f625e8032d0d294/src/clj/new/clj_py_r_template/Dockerfile#L15
+and the `docker run` id settings play together and this works as-is only on Linux. 
+
+Line 15-19 of the Dockerfile and the `-build-arg USER_ID=$(id -u) --build-arg GROUP_ID=$(id -g)` are only  needed if volume is mounted as in the example.
+Without these, any file written to the shared volume by the container gets wrong permissions, which is unconvinient.
 
 # Motivation
 This template is the easiest way to use R, python and Julia from Clojure.

@@ -1,9 +1,9 @@
 FROM rocker/r-ver:4.1.1
 RUN apt-get update && apt-get -y install --reinstall ca-certificates && update-ca-certificates
-RUN apt-get -y install  automake-1.15 automake build-essential curl git libbluetooth-dev libbz2-dev libdb-dev libexpat1-dev libffi-dev libgdbm-dev liblzma-dev libmpdec-dev libncurses5-dev libncursesw5-dev libnss3-dev libreadline-dev libsqlite3-dev libssl-dev openjdk-11-jdk rlwrap zlib1g-dev
+RUN apt-get update && apt-get -y install openjdk-11-jdk curl rlwrap libssl-dev build-essential zlib1g-dev  libncurses5-dev libgdbm-dev libnss3-dev  libreadline-dev libffi-dev libbz2-dev
 
-#python
-RUN curl -O https://www.python.org/ftp/python/3.9.5/Python-3.9.5.tar.xz
+# python
+RUN curl -O httpso://www.python.org/ftp/python/3.9.5/Python-3.9.5.tar.xz
 RUN tar xf Python-3.9.5.tar.xz
 RUN cd Python-3.9.5 && ./configure --enable-shared --with-ensurepip=install && make && make install && ldconfig
 RUN curl -O https://download.clojure.org/install/linux-install-1.10.3.981.sh && chmod +x linux-install-1.10.3.981.sh && ./linux-install-1.10.3.981.sh
