@@ -1,4 +1,5 @@
 [![Clojars Project](https://img.shields.io/clojars/v/clj-py-r-template/clj-template.svg)](https://clojars.org/clj-py-r-template/clj-template)
+- latest snapshot: [![Gitpod ready-to-code latest-snapshot](https://img.shields.io/badge/Gitpod-ready--to--code-908a85?logo=gitpod)](https://gitpod.io/#https://github.com/behrica/clj-py-r-template)
 
 # Clojure polyglot  clj-template
 
