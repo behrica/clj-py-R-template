@@ -10,9 +10,11 @@ Only requirements is [clojure](https://clojure.org/guides/getting_started) and [
 clojure -Sdeps '{:deps {com.github.seancorfield/clj-new {:mvn/version "1.2.362"}}}' -M -m clj-new.create clj-py-r-template me/my-app
 ```
 
-2.Build and run Docker image, which starts a headless repl on port 12345 in a docker container
+2.Build and run Docker image, which starts a headless repl on port 12345
+in a docker container
 
-This assumes a Linux OS and bash as shell. It might be slidely different on other platforms or shell.
+This assumes a Linux OS and bash as shell. It might be slightly different on
+other platforms or shell.
 
 
 
@@ -23,6 +25,22 @@ docker run -it --rm -v $HOME/.m2:/home/user/.m2 -v "$(pwd):/workdir" -p  12345:1
 ```
 
 3. Connect normal repl to it
+(require '[libpython-clj2.require :refer [require-python]]
+         '[libpython-clj2.python :as py]
+         '[clojisr.v1.r :as r :refer [r require-r]])
+
+(require-python '[numpy :as np])
+(require-r '[base :as base-r])
+
+(def r-matrix
+ (-> (np/array [[1 2 3 4] [5 6 7 8] [9 10 11 12]])
+     (py/->jvm)
+     (r/clj->java->r)
+     (base-r/simplify2array)
+     (base-r/t)))
+
+(println
+ (base-r/dim r-matrix))
 ```bash
 clj -Sdeps '{:deps {cider/cider-nrepl {:mvn/version "0.25.2"} }}' -m nrepl.cmdline  --middleware "[cider.nrepl/cider-middleware]" -c -p 12345
 ```
@@ -53,22 +71,30 @@ clj -Sdeps '{:deps {cider/cider-nrepl {:mvn/version "0.25.2"} }}' -m nrepl.cmdli
 
 The `docker run` commands above assume a Linux OS and bash as shell
 The same is true for the Dockerfile produced by this template.
-Line 15-19 of teh Dockerfile 
+Line 15-19 of the Dockerfile 
 https://github.com/behrica/clj-py-r-template/blob/2f1ec12690c09917c4c7608d6f625e8032d0d294/src/clj/new/clj_py_r_template/Dockerfile#L15
-and the `docker run` id settings play together and this works as-is only on Linux. 
+and the `docker run` id settings play together and this
+works as-is only on Linux. 
 
-Line 15-19 of the Dockerfile and the `-build-arg USER_ID=$(id -u) --build-arg GROUP_ID=$(id -g)` are only  needed if volume is mounted as in the example.
-Without these, any file written to the shared volume by the container gets wrong permissions, which is unconvinient.
+Line 15-19 of the Dockerfile and the `-build-arg USER_ID=$(id -u) --build-arg GROUP_ID=$(id -g)` 
+are only  needed if volume is mounted as in the example.
+Without these, any file written to the shared volume by the container
+gets wrong permissions, which is inconvenient.
 
 # Motivation
 This template is the easiest way to use R, python and Julia from Clojure.
 
 
-In the world of Java / Clojure Docker is not that common, because on the JVM platform using Docker instead of a JVM dependency manger (maven, lein, gradle ...) is not really required.
+In the world of Java / Clojure Docker is not that common, because on the
+JVM plattform using Docker instead of a JVM 
+dependency manger (maven, lein, gradle ...) is not really required.
 
-This situation changes, the moment we add R / python or Julia into our stack, because both might have operating system dependencies in their packages.
+This situation changes, the moment we add R / python or Julia into our stack,
+because both might have operating system
+dependencies in their packages.
 
-Then Docker can be very helpfull to get started quickly and work in a reproducible manner.
+Then Docker can be very helpfull to get started quickly and work
+in a reproducible manner.
 
 This template contains a Dockerfile which has Clojure and all dependencies for [ClojisR](https://github.com/scicloj/clojisr), [libpython-clj](https://github.com/clj-python/libpython-clj), [julia-clj](https://github.com/cnuernber/libjulia-clj) and [
 libapl-clj](https://github.com/jjtolton/libapl-clj)
@@ -79,7 +105,8 @@ plus a deps.edn file containing working versions of ClojisR,libpython-clj and Ju
 
 ## Usage
 
-Clojure projects including libpython-clj, ClojisR and Julia-clj can now be created quickly in 2 ways from the latest stable template:
+Clojure projects including libpython-clj, ClojisR and Julia-clj can
+now be created quickly in 2 ways from the latest stable template:
 
 
 -   **without** clj-new installed in user deps.edn
@@ -87,7 +114,7 @@ Clojure projects including libpython-clj, ClojisR and Julia-clj can now be creat
 ```bash 
 
 # example
-clj -Sdeps '{:deps {seancorfield/clj-new {:mvn/version "1.0.199"}}}' \
+clj -Sdeps '{:deps {com.github.seancorfield/clj-new {:mvn/version "1.2.362"}}}' \
   -m clj-new.create clj-py-r-template appcompany.funapp
 ```
 
@@ -113,9 +140,13 @@ docker build -t funapp --build-arg USER_ID=$(id -u) --build-arg GROUP_ID=$(id -g
 
 ```
 
-The Dockerfile assumes that the local project directory gets mounted into a folder in the container and that it becomes the working directory. The docker image runs a nRepl on port 12345 which can be connected to by any other nRepl compatible client (including emacs+Cider)
+The Dockerfile assumes that the local project directory gets mounted into a 
+folder in the container and that it becomes the working directory.
+The docker image runs a nRepl on port 12345 which can be connected
+to by any other nRepl compatible client (including emacs+Cider)
 
-A typical command line for running the nRepl server in a docker container is then this:
+A typical command line for running the nRepl server in a docker
+container is then this:
 
 ```
 docker run -it --rm -v "$(pwd):/code" -p 12345:12345 funapp
@@ -127,11 +158,12 @@ docker run -it --rm -v "$(pwd):/code" -p 12345:12345 funapp
  
  Example to use clj as nRepl client:
  ```
- clj -Sdeps '{:deps {cider/cider-nrepl {:mvn/version "0.25.2"} }}' -m nrepl.cmdline  --middleware "[cider.nrepl/cider-middleware]" -c -p 12345
+ clj -Sdeps '{:deps {cider/cider-nrepl {:mvn/version "0.27.2"} }}' -m nrepl.cmdline  --middleware "[cider.nrepl/cider-middleware]" -c -p 12345
  ```
  
  
- In this connected repl  cljisr, libpython-clj , julia-clj and libapl-clj work out of the box:
+ In this connected repl  cljisr, libpython-clj , julia-clj and
+ libapl-clj work out of the box:
  
  ```
 (require '[libpython-clj2.require :refer [require-python]])
@@ -150,9 +182,10 @@ docker run -it --rm -v "$(pwd):/code" -p 12345:12345 funapp
 (apl/+ [1 2 3] [4 5 6])
  ```
 
-### Customizing the Docker image (typicall to add some libraries)
+### Customizing the Docker image (typically to add some libraries)
 
-As in the Docker image one single R version and one single python version is installed,
+As in the Docker image one single R version and one single python 
+version is installed,
 libraries can be simply added by adding a few lines to the Dockerfile.
 
 In case native dependencies are required, they can be added via "apt-get install"
@@ -169,11 +202,13 @@ RUN Rscript -e "install.packages('dplyr')"
 ```
 
 ### Changing Clojure dependencies
-Clojure dependencies are currently not specified in the Dockerfile, but can be added as usual to the deps.edn file.
+Clojure dependencies are currently not specified in the Dockerfile, but
+can be added as usual to the deps.edn file.
 
 ### Current versions
 
-The versions of this template contains the following versions of dependencies in either Dockerfile or deps.end
+The versions of this template contains the following versions of dependencies 
+in either Dockerfile or deps.end
 
 #### 1.0.2
 
@@ -361,6 +396,28 @@ Added scripts for Docker
 |clj-python/libpython-clj| 2.0.0|
 |julia-clj| 0.0.7|
 |scicloj.ml| 0.1.0-beta4|
+|scicloj/clojisr |1.0.0-BETA19|
+|notespace | 3-beta9 |
+|cider-nrepl | 0.25.9|
+
+### 1.5.1
+
+
+
+|dependency|version|
+|----------|-------|
+|clojure | 1.10.3.981|
+|R         | 4.1.1 |
+|java |  openjdk 11|
+|python| 3.10.0|
+|julia | 1.5.3 |
+|APL | latest |
+|RServe| 1.8-7|
+|tablecloth  | 6.023|
+|tech.ml.dataset | 6.023 |
+|clj-python/libpython-clj| 2.0.0|
+|julia-clj| 0.0.7|
+|scicloj.ml| 0.1.0|
 |scicloj/clojisr |1.0.0-BETA19|
 |notespace | 3-beta9 |
 |cider-nrepl | 0.25.9|

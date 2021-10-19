@@ -1,1 +1,4 @@
 .cpcache
+/target/
+/.nrepl-port
+/.lein-failures
