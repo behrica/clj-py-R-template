@@ -424,4 +424,5 @@ Added scripts for Docker
 |scicloj/clojisr |1.0.0-BETA19|
 |notespace | 3-beta9 |
 |cider-nrepl | 0.25.9|
+|libapl-clj |0.1.2-ALPHA-SNAPSHOT|
 
