@@ -27,23 +27,8 @@ docker build -t my-app --build-arg USER_ID=$(id -u) --build-arg GROUP_ID=$(id -g
 docker run -it --rm -v $HOME/.m2:/home/user/.m2 -v "$(pwd):/workdir" -p  12345:12345 my-app
 ```
 
-3. Connect normal repl to it
-(require '[libpython-clj2.require :refer [require-python]]
-         '[libpython-clj2.python :as py]
-         '[clojisr.v1.r :as r :refer [r require-r]])
-
-(require-python '[numpy :as np])
-(require-r '[base :as base-r])
-
-(def r-matrix
- (-> (np/array [[1 2 3 4] [5 6 7 8] [9 10 11 12]])
-     (py/->jvm)
-     (r/clj->java->r)
-     (base-r/simplify2array)
-     (base-r/t)))
-
-(println
- (base-r/dim r-matrix))
+3. In other shell: Connect normal repl to it
+ 
 ```bash
 clj -Sdeps '{:deps {cider/cider-nrepl {:mvn/version "0.25.2"} }}' -m nrepl.cmdline  --middleware "[cider.nrepl/cider-middleware]" -c -p 12345
 ```
@@ -168,7 +153,7 @@ docker run -it --rm -v "$(pwd):/code" -p 12345:12345 funapp
  In this connected repl  cljisr, libpython-clj , julia-clj and
  libapl-clj work out of the box:
  
- ```
+ ```clojure
 (require '[libpython-clj2.require :refer [require-python]])
 (require-python '[os :as os])
 (os/getcwd)
