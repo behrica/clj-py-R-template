@@ -1,2 +1,5 @@
 Bootstrap: docker
 From: behrica/clj-py-r:1.5.1
+
+%environment
+export JULIA_HOME=/opt/julia-1.5.3
