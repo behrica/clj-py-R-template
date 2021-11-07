@@ -3,6 +3,6 @@ From: behrica/clj-py-r/clj-py-r_base:1.5.1
 
 %post
 cp  /usr/local/bin/APserver $HOME
-
-%runscript
-python3 "-c" "import cljbridge;cljbridge.init_jvm(start_repl=True,port=12345,bind='0.0.0.0')"
+# apt-get install ....
+# pip3 install ....
+# Rscript -e 'install.packages("....",repo="http://cran.rstudio.com/")'

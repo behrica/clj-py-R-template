@@ -1,7 +1,5 @@
 FROM behrica/clj-py-r:1.5.1
 
-#ENV JULIA_HOME=/home/user/julia-1.5.3
-
 
 ARG USER_ID
 ARG GROUP_ID
@@ -13,7 +11,8 @@ USER user
 WORKDIR /home/user
 
 
-# is this a hack ?
 RUN cp /usr/local/bin/APserver /home/user
 
-
+# RUN apt-get install ....
+# RUN pip3 install ....
+# RUN Rscript -e 'install.packages("....",repo="http://cran.rstudio.com/")'
