@@ -73,7 +73,7 @@ gets wrong permissions, which is inconvenient.
 This template is the easiest way to use R, python and Julia from Clojure.
 
 
-In the world of Java / Clojure Docker is not that common, because on the
+In the world of Java / Clojure usgae of containers is not that common, because on the
 JVM plattform using Docker instead of a JVM 
 dependency manger (maven, lein, gradle ...) is not really required.
 
@@ -81,10 +81,10 @@ This situation changes, the moment we add R / python or Julia into our stack,
 because both might have operating system
 dependencies in their packages.
 
-Then Docker can be very helpfull to get started quickly and work
+Then containers can be very helpfull to get started quickly and work
 in a reproducible manner.
 
-This template contains a Dockerfile which has Clojure and all dependencies for [ClojisR](https://github.com/scicloj/clojisr), [libpython-clj](https://github.com/clj-python/libpython-clj), [julia-clj](https://github.com/cnuernber/libjulia-clj) and [
+This template contains a Dockerfile / singularity definition file which has Clojure and all dependencies for [ClojisR](https://github.com/scicloj/clojisr), [libpython-clj](https://github.com/clj-python/libpython-clj), [julia-clj](https://github.com/cnuernber/libjulia-clj) and [
 libapl-clj](https://github.com/jjtolton/libapl-clj)
 plus a deps.edn file containing working versions of ClojisR,libpython-clj and Julia-clj.
 
@@ -118,7 +118,9 @@ clj  -X:new :template clj-py-r-template  :name appcompany.funapp
 
 Specific versions of this template can be used by adding something like "-V 1.0.2" to the upper commands
 
-### Creating docker image
+The templates support Docker and Singularity for ease of setting everyting up
+
+### Run polyglot nrepl via Docker
 The template creates a Dockerfile in the project folder.
 The docker image can be build with
 
@@ -138,6 +140,13 @@ container is then this:
 
 ```
 docker run -it --rm -v "$(pwd):/code" -p 12345:12345 funapp
+ ```
+ 
+ ### Run polyglot repl via Singularity
+ 
+ ```bash
+ singularity build /tmp/my-app.sif my-project.def
+ singularity run /tmp/my-app.sif
  ```
  ### Using ClojisR,libpython-clj,julia-clj and libapl-clj in repl
  
@@ -170,16 +179,17 @@ docker run -it --rm -v "$(pwd):/code" -p 12345:12345 funapp
 (apl/+ [1 2 3] [4 5 6])
  ```
 
-### Customizing the Docker image (typically to add some libraries)
+### Customizing the container image (typically to add some libraries)
 
-As in the Docker image one single R version and one single python 
+As in the container images one single R version and one single python 
 version is installed,
-libraries can be simply added by adding a few lines to the Dockerfile.
+libraries can be simply added by adding a few lines to the image configuratyion file (Dockerfile / my-project.def).
 
 In case native dependencies are required, they can be added via "apt-get install"
 
 The following would add a native library, a python library and a R package.
 
+Example how to add to Dockefile
 ```
 RUN apt-get install libssl-dev
 
@@ -188,15 +198,25 @@ RUN pip3 install pandas
 RUN Rscript -e "install.packages('dplyr')"
 
 ```
+Example to add to Singularity .def file:
+
+```
+%post
+apt-get install libssl-dev
+pip3 install pandas
+Rscript -e "install.packages('dplyr')"
+```
+
+
 
 ### Changing Clojure dependencies
-Clojure dependencies are currently not specified in the Dockerfile, but
+Clojure dependencies are currently not specified in the image configuration file, but
 can be added as usual to the deps.edn file.
 
 ### Current versions
 
 The versions of this template contains the following versions of dependencies 
-in either Dockerfile or deps.end
+in either image configuration file or deps.end
 
 #### 1.0.2
 
