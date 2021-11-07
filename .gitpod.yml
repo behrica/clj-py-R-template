@@ -1,6 +1,10 @@
 image:
   file: .gitpod.Dockerfile
 
+tasks:
+  - name: start nrepl
+    command: python3 -c "import cljbridge;cljbridge.init_jvm(start_repl=True,port=12345,bind='0.0.0.0')
+    
 vscode:
   extensions:
     - betterthantomorrow.calva
