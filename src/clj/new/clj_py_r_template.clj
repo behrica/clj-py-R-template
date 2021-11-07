@@ -36,6 +36,7 @@
         ["docker_repl.sh" (render "docker_repl.sh" data) :executable true]
         ["docker_run_xxx.sh" (render "docker_run_xxx.sh" data) :executable true]
         ["Dockerfile" (render "Dockerfile" data)]
+        ["my-project.def" (render "my-project.def" data)]
         ["deps.edn" (render "deps.edn" data)]
         ["src/try_py_R.clj" (render "src/try_py_R.clj" data)]]))))
 

@@ -22,3 +22,10 @@ RUN curl -O https://julialang-s3.julialang.org/bin/linux/x64/1.5/julia-1.5.3-lin
   && tar -xvzf julia-1.5.3-linux-x86_64.tar.gz
 RUN mv julia-1.5.3/ /opt/
 RUN ln -s /opt/julia-1.5.3/bin/julia /usr/local/bin/julia
+
+RUN curl https://raw.githubusercontent.com/clj-python/libpython-clj/dcdcc77ba582a7a09d698d80c2a991cf3d8e151a/cljbridge.py -o /usr/local/lib/python3.10/cljbridge.py
+
+COPY deps.edn .
+RUN clj -P
+
+CMD ["python3", "-c", "import cljbridge\ncljbridge.init_jvm(start_repl=True,port=12345,bind='0.0.0.0')"]

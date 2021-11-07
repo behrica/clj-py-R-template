@@ -1,0 +1,2 @@
+Bootstrap: docker
+From: behrica/clj-py-r:1.5.1

@@ -1,0 +1,27 @@
+{
+ :mvn/repos {"clojars" {:url "https://repo.clojars.org/"}
+             "central" {:url "https://repo1.maven.org/maven2/"}
+             "bedatadriven" {:url "https://nexus.bedatadriven.com/content/groups/public/"}}
+
+ :paths ["src" "resources"]
+
+ :deps {
+        org.clojure/clojure      {:mvn/version "1.10.3"}
+        clj-python/libpython-clj {:mvn/version "2.000"}
+        scicloj/clojisr          {:mvn/version "1.0.0-BETA19"}
+        scicloj/tablecloth       {:mvn/version "6.023"}
+        scicloj/notespace        {:mvn/version "3-beta9"}
+        scicloj/scicloj.ml       {:mvn/version "0.1.0"}
+        cnuernber/libjulia-clj   {:mvn/version "0.07"}
+        jjtolton/libapl-clj {:mvn/version "0.1.2-ALPHA-SNAPSHOT"}}
+
+
+
+
+        
+
+ :aliases {
+           :cider-clj {:extra-deps {cider/cider-nrepl {:mvn/version "0.27.2"}
+                                    refactor-nrepl {:mvn/version "3.0.0-alpha13"}}
+                       :main-opts ["-m" "nrepl.cmdline" "-b" "0.0.0.0" "-p" "12345"
+                                   "--middleware" "[cider.nrepl/cider-middleware,refactor-nrepl.middleware/wrap-refactor]"]}}}
