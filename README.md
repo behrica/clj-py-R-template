@@ -73,8 +73,8 @@ gets wrong permissions, which is inconvenient.
 This template is the easiest way to use R, python and Julia from Clojure.
 
 
-In the world of Java / Clojure usgae of containers is not that common, because on the
-JVM plattform using Docker instead of a JVM 
+In the world of Java / Clojure usage of containers is not that common, because on the
+JVM platform using Docker instead of a JVM 
 dependency manger (maven, lein, gradle ...) is not really required.
 
 This situation changes, the moment we add R / python or Julia into our stack,
@@ -183,13 +183,13 @@ docker run -it --rm -v "$(pwd):/code" -p 12345:12345 funapp
 
 As in the container images one single R version and one single python 
 version is installed,
-libraries can be simply added by adding a few lines to the image configuratyion file (Dockerfile / my-project.def).
+libraries can be simply added by adding a few lines to the image configuration file (Dockerfile / my-project.def).
 
 In case native dependencies are required, they can be added via "apt-get install"
 
 The following would add a native library, a python library and a R package.
 
-Example how to add to Dockefile
+Example how to add to Dockerfile
 ```
 RUN apt-get install libssl-dev
 
