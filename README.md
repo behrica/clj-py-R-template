@@ -2,7 +2,7 @@
 
 # Clojure polyglot  clj-template
 
-# Quickstart - Get a working clojure repl supporting python, R and Julia in 5 lines
+# Quickstart - Get a working clojure repl supporting Python, R and Julia in 5 lines
 
 Only requirements is [clojure](https://clojure.org/guides/getting_started) and [docker](https://docs.docker.com/get-docker) installed.
 
@@ -100,7 +100,6 @@ now be created quickly in 2 ways from the latest stable template:
 
 ```bash 
 
-# example
 clj -Sdeps '{:deps {com.github.seancorfield/clj-new {:mvn/version "1.2.362"}}}' \
   -m clj-new.create clj-py-r-template appcompany.funapp
 ```
@@ -108,16 +107,18 @@ clj -Sdeps '{:deps {com.github.seancorfield/clj-new {:mvn/version "1.2.362"}}}' 
 -    **with** clj-new [installed](https://github.com/seancorfield/clj-new) in user deps.edn (recommended)
 
 ```bash 
-# example
 clj  -X:new :template clj-py-r-template  :name appcompany.funapp
 ```
-
-   **NOTE**: this assumes you have `clj-new` configured in your `~/.clojure/deps.edn`
-   profile. 
+   
+- **with** clj-new installed as Clojure **Tool**
+```bash
+clj -Tclj-new create :template clj-py-r-template :name appcompany.funapp
+```
 
 Specific versions of this template can be used by adding something like "-V 1.0.2" to the upper commands
 
-The templates provided config files for three different wyas to run the container:
+The templates provided config files for three different ways to run the container:
+
 1. Docker  (typically on local machine)
 2. Singularity (typically on local machine)
 3. Gitpod (one way to run Docker cntainers in cloud)
@@ -159,8 +160,8 @@ Please have a look and adapt to you needs.
  singularity run /tmp/my-app.sif
  ```
 
-build first a Singularity image containing Clojure, python, R, Julia and APL.
-The the image is run which starts a nrepl on port 12345.
+build first a [Singularity](https://singularity.hpcng.org/) image containing Clojure, python, R, Julia and APL.
+Then the image is run, which starts a nrepl on port 12345.
 
 To get this working the working directory  needs:
 
@@ -172,13 +173,14 @@ How to make this sure, is installation / project dependent and can be controlled
 
 ### Singularity vs Docker
 
-Be aware that the 2 differ fundamentaly regaring their default settings of host / container isolation.
-In "our use case" here the defaults of Singulriy are normaly fine, while we need to tell Docker to share
+Be aware that the two differ fundamentaly regarding their default settings of host / container isolation.
+In "our use case" here the defaults of Singularity are normaly fine, while we need to tell Docker to share
 volumes and ports explicitely.
 
 
 ### Use Gitpod
-The template creates the 2  gitpod configuration files. `.gitpod.yml` and
+
+The template creates as well the 2  [gitpod](https://gitpod.io/) configuration files. `.gitpod.yml` and
 `.gitpod.Dockerfile`.
 Launching a workspace pointing to a github repo with them,
 configures Gitpod to use the Dockerfile in `.gitpod.Dockerfile`. 
@@ -223,7 +225,14 @@ This requires to use [gitpod local-companion](https://www.gitpod.io/blog/local-a
 (apl/+ [1 2 3] [4 5 6])
  ```
 
-### Customizing the container image (typically to add some libraries)
+### Customizing the container image 
+
+#### Add some libraries
+
+The template itself should not contain instructions to install any Python, R, Julia, APL libraries but only the base tool as such.
+For Clojure a deps.edn is provided with all polyglot libraries and "some data science libraries from Scicloj".
+This should be conidered a template, to be changed.
+
 
 As in the container images one single R version and one single python 
 version is installed,
@@ -242,6 +251,8 @@ RUN pip3 install pandas
 RUN Rscript -e "install.packages('dplyr')"
 
 ```
+
+
 Example to add to Singularity .def file:
 
 ```
@@ -251,7 +262,25 @@ pip3 install pandas
 Rscript -e "install.packages('dplyr')"
 ```
 
+The same can be done for additional Julia or APL libraries.
 
+#### Change versions of Python, Julia, R, Apl
+
+The installtion of those is done in a base image.
+The Dockerfile of the base image is here:
+https://github.com/behrica/clj-py-r-template/blob/master/docker-base/Dockerfile
+
+So customistaion of those could be done by copy/paste of the relevant parts from this.
+
+The latest version of `clj-py-r-template` itself should always install the latest released version of:
+- Java
+- Clojure
+- Python
+- Julia
+- APL
+
+The update frequency of `clj-py-r-template` is nevertheless independent from those and will be done as needed.
+Requests for updates can be done via submitting issues here.
 
 ### Changing Clojure dependencies
 Clojure dependencies are currently not specified in the image configuration file, but
