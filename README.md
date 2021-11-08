@@ -118,7 +118,10 @@ clj  -X:new :template clj-py-r-template  :name appcompany.funapp
 
 Specific versions of this template can be used by adding something like "-V 1.0.2" to the upper commands
 
-The templates support Docker and Singularity for ease of setting everyting up
+The templates provided config files for three different wyas to run the container:
+1. Docker  (typically on local machine)
+2. Singularity (typically on local machine)
+3. Gitpod (one way to run Docker cntainers in cloud)
 
 ### Run polyglot nrepl via Docker
 The template creates a Dockerfile in the project folder.
@@ -142,16 +145,51 @@ container is then this:
 docker run -it --rm -v "$(pwd):/code" -p 12345:12345 funapp
  ```
  
- ### Run polyglot repl via Singularity
+ ### Run polyglot nrepl via Singularity
  
+ This 2 lines 
  ```bash
  singularity build /tmp/my-app.sif my-project.def
  singularity run /tmp/my-app.sif
  ```
+
+build first a Singularity image containing Clojure, python, R, Julia and APL.
+The the image is run which starts a nrepl on port 12345.
+
+To get this working the working directory  needs:
+
+- to have a `deps.edn` with all needed Clojure deps (as created by this template)
+- be writable by singularity
+
+
+How to make this sure, is installation / project dependent and can be controlled by the options to `singularity run`
+
+### Singularity vs Docker
+
+Be aware that the 2 differ fundamentaly regaring their default settings of host / container isolation.
+In "our use case" here the defaults of Singulriy are normaly fine, while we need to tell Docker to share
+volumes and ports explicitely.
+
+
+### Use Gitpod
+The template creates the 2  gitpod configuration files. `.gitpod.yml` and
+`.gitpod.Dockerfile`.
+Launching a workspace pointing to a github repo with them,
+configures Gitpod to use the Dockerfile in `.gitpod.Dockerfile`. 
+So the Gitpod workspace will have Clojure, python, R, Julia and APL setup correctly and 
+the Clojure polyglot libraries will work out-of-the-box.
+
+The workspace launch will start the repl automatically an we can use VSCode in browser to connect to it.
+
+Advanced:
+Gitpod can be as well configured and used to expose the nrepl connection and ssh over the Internet.
+This allows to connect from local machine to a Gitpod workspace (nrepl + ssh filesystem) with for example Emacs (cider + tramp)
+This requires to use [gitpod local-companion](https://www.gitpod.io/blog/local-app)
+
  ### Using ClojisR,libpython-clj,julia-clj and libapl-clj in repl
  
- 
- Now Emacs (or any other nRepl client) can be connected to localhost:12345.
+ If a local repl was started as described before,
+ Emacs (or any other nRepl client) can be connected to localhost:12345.
  
  Example to use clj as nRepl client:
  ```
