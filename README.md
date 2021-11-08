@@ -123,6 +123,7 @@ The templates provided config files for three different wyas to run the containe
 3. Gitpod (one way to run Docker cntainers in cloud)
 
 ### Run polyglot nrepl via Docker
+
 The template creates a Dockerfile in the project folder.
 The docker image can be build with
 
@@ -143,6 +144,12 @@ container is then this:
 ```
 docker run -it --rm -v "$(pwd):/code" -p 12345:12345 funapp
  ```
+ 
+ The template creates as well 2 bash scripts with some defaults, to:
+- build the docker image from the Dockerfile
+- run a repl inside Docker container
+
+Please have a look and adapt to you needs.
  
  ### Run polyglot nrepl via Singularity
  
