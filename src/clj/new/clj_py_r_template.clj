@@ -38,6 +38,8 @@
         ["Dockerfile" (render "Dockerfile" data)]
         ["my-project.def" (render "my-project.def" data)]
         ["deps.edn" (render "deps.edn" data)]
+        [".gitpod.Dockerfile" (render ".gitpod.Dockerfile" data)]
+        [".gitpod.yml" (render ".gitpod.yml" data)]
         ["src/try_py_R.clj" (render "src/try_py_R.clj" data)]]))))
 
 
