@@ -87,17 +87,17 @@ This template contains a Dockerfile / singularity definition file which has Cloj
 libapl-clj](https://github.com/jjtolton/libapl-clj)
 plus a deps.edn file containing working versions of ClojisR,libpython-clj and Julia-clj.
 
-## Clojure and Docker
-Docker can be used in Clojure Devlopment for several purposes:
+## Clojure and Docker (or other container technology)
+Containers can be used in Clojure Devlopment for several purposes:
 
 1. Create a (production) runtime environment for a Clojure application
 2. Create a (polyglot) development environment for Clojure
-  a. Flavor a: Run only a nrepl inside Docker
-  b. Flavor b: Run all (nrepl, editor, git ,...) inside Docker 
+  a. Flavor a: Run only a nrepl inside container
+  b. Flavor b: Run all (nrepl, editor, git ,...) inside container
 
 This project is about 2a).
-A potential solution for 2b) can be docker based coding platforms such as VSCode, Gitpod, Codespaces 
-or extensions of the Dockerfile here and custom addition of the development tools.
+A potential solution for 2b) can be container/ docker based coding platforms such as VSCode, Gitpod, Codespaces 
+or extensions of the container spec files here and custom addition of the development tools.
 
 ## Usage
 
