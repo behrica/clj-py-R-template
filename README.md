@@ -36,3 +36,6 @@ clj -A:new \
 For help please visit our [help-wanted](https://clojurians.zulipchat.com/#narrow/stream/215609-libpython-clj-dev/topic/help-wanted) topic.
 
 For configuration option requests, please file a Github issue or visit our [feature requests]( https://clojurians.zulipchat.com/#narrow/stream/215609-libpython-clj-dev/topic/feature-requests) topic.  
+
+
+An alternatiev clj template with `libpython-clj` support via Docker is here: [clj-py-r-template](https://github.com/behrica/clj-py-r-template)
