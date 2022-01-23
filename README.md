@@ -22,6 +22,12 @@ other platforms or shell.
 
 ```bash
 cd my-app
+docker build -t my-app  .
+docker run -it -p  12345:12345 my-app
+```
+(in most situations you want to mount some host drives and make the user id of 'user' match your user id, so the invocations becomes (for Linux): )
+
+```bash
 docker build -t my-app --build-arg USER_ID=$(id -u) --build-arg GROUP_ID=$(id -g) .
 docker run -it --rm -v $HOME/.m2:/home/user/.m2 -v "$(pwd):/workdir" -p  12345:12345 my-app
 ```
