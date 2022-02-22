@@ -521,8 +521,6 @@ Added scripts for Docker
 
 ### 1.5.2
 
-
-
 |dependency|version|
 |----------|-------|
 |clojure | 1.10.3.981|
@@ -541,4 +539,8 @@ Added scripts for Docker
 |notespace | 3-beta9 |
 |cider-nrepl | 0.25.9|
 |libapl-clj |0.1.2-ALPHA-SNAPSHOT|
+
+### 1.6.0
+Only changes to the Dockerfiles
+Library versions state the same as in 1.5.2
 
