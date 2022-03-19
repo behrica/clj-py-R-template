@@ -22,6 +22,12 @@ other platforms or shell.
 
 ```bash
 cd my-app
+docker build -t my-app  .
+docker run -it -p  12345:12345 my-app
+```
+(in most situations you want to mount some host drives and make the user id of 'user' match your user id, so the invocations becomes (for Linux): )
+
+```bash
 docker build -t my-app --build-arg USER_ID=$(id -u) --build-arg GROUP_ID=$(id -g) .
 docker run -it --rm -v $HOME/.m2:/home/user/.m2 -v "$(pwd):/workdir" -p  12345:12345 my-app
 ```
@@ -87,8 +93,17 @@ This template contains a Dockerfile / singularity definition file which has Cloj
 libapl-clj](https://github.com/jjtolton/libapl-clj)
 plus a deps.edn file containing working versions of ClojisR,libpython-clj and Julia-clj.
 
+## Clojure and Docker (or other container technology)
+Containers can be used in Clojure Devlopment for several purposes:
 
+1. Create a (production) runtime environment for a Clojure application
+2. Create a (polyglot) development environment for Clojure
+    * Flavor a: Run only a nrepl inside container
+    * Flavor b: Run all (nrepl, editor, git ,...) inside container
 
+This project is about 2a).
+A potential solution for 2b) can be container/ docker based coding platforms such as VSCode, Gitpod, Codespaces 
+or extensions of the container spec files here and custom addition of the development tools.
 
 ## Usage
 
@@ -506,8 +521,6 @@ Added scripts for Docker
 
 ### 1.5.2
 
-
-
 |dependency|version|
 |----------|-------|
 |clojure | 1.10.3.981|
@@ -527,3 +540,28 @@ Added scripts for Docker
 |cider-nrepl | 0.25.9|
 |libapl-clj |0.1.2-ALPHA-SNAPSHOT|
 
+### 1.6.0
+Only changes to the Dockerfiles
+Library versions state the same as in 1.5.2
+
+### 1.7.0
+
+|dependency|version|
+|----------|-------|
+|clojure | 1.10.3.981|
+|R         | 4.1.2 |
+|java |  openjdk 11|
+|python| 3.10.0|
+|julia | 1.7.2 |
+|APL | latest |
+|RServe| 1.8-7|
+|tablecloth  | 6.076|
+|tech.ml.dataset | 6.076 |
+|clj-python/libpython-clj| 2.018|
+|com.cnuernber/libjulia-clj| 1.000-beta-8|
+|scicloj.ml| 0.2.0|
+|scicloj/clojisr |1.0.0-BETA19|
+|notespace | 3-beta9 |
+|cider-nrepl | 0.25.9|
+|libapl-clj |0.1.2-ALPHA-SNAPSHOT|
+|clerk|0.6.387|
