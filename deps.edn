@@ -1,20 +1,31 @@
 {
- :paths ["src"]
+ :mvn/repos {"clojars" {:url "https://repo.clojars.org/"}
+             "central" {:url "https://repo1.maven.org/maven2/"}
+             "bedatadriven" {:url "https://nexus.bedatadriven.com/content/groups/public/"}}
+
+ :paths ["src" "resources"]
 
  :deps {
-        org.clojure/clojure      {:mvn/version "1.10.2"}
-        seancorfield/clj-new     {:mvn/version "1.1.264"}
-        }
- :aliases {
-  :deploy {:extra-deps {deps-deploy {:mvn/version "RELEASE"}}
-          :main-opts ["-m" "deps-deploy.deps-deploy" "deploy"
-		      "deps-deploy.jar"]}
+        org.clojure/clojure         {:mvn/version "1.10.3"}
+        clj-python/libpython-clj    {:mvn/version "2.018"}
+        scicloj/clojisr             {:mvn/version "1.0.0-BETA19"}
+        scicloj/tablecloth          {:mvn/version "6.076"}
+        scicloj/notespace           {:mvn/version "3-beta9"}
+        scicloj/scicloj.ml          {:mvn/version "0.2.0"}
+        com.cnuernber/libjulia-clj  {:mvn/version "1.000-beta-8"}
+        behrica/libapl-clj          {:git/url "https://github.com/behrica/libapl-clj"
+                                     :git/sha "f40e17a95eaab6f81417d315f8499be7141b813c"}
+        ;; {:mvn/version "0.1.2-ALPHA-SNAPSHOT"}
 
- :jar {:extra-deps {pack/pack.alpha
-                     {:git/url "https://github.com/juxt/pack.alpha.git"
-                      :sha "e518d9b2b70f4292c9988d2792b8667d88a6f4df"}
-org.clojure/tools.deps.alpha {:mvn/version "0.7.541"}}
-        :main-opts ["-m" "mach.pack.alpha.skinny" "--no-libs"
-                    "--project-path" "deps-deploy.jar"]}
- }
-}
+        io.github.nextjournal/clerk {:mvn/version "0.6.387"}}
+
+
+
+
+        
+
+ :aliases {
+           :cider-clj {:extra-deps {cider/cider-nrepl {:mvn/version "0.27.2"}
+                                    refactor-nrepl {:mvn/version "3.0.0-alpha13"}}
+                       :main-opts ["-m" "nrepl.cmdline" "-b" "0.0.0.0" "-p" "12345"
+                                   "--middleware" "[cider.nrepl/cider-middleware,refactor-nrepl.middleware/wrap-refactor]"]}}}

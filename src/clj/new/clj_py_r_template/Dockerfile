@@ -1,4 +1,4 @@
-FROM behrica/clj-py-r:1.5.1
+FROM behrica/clj-py-r:1.7.0
 
 
 ARG USER_ID
@@ -7,6 +7,7 @@ ARG GROUP_ID
 RUN addgroup --gid $GROUP_ID user
 RUN adduser --disabled-password --gecos '' --uid $USER_ID --gid $GROUP_ID user
 
+RUn chown -R user:user /tmp/.m2/repository
 USER user
 WORKDIR /home/user
 

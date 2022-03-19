@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-docker run -it --rm -v $HOME/.m2:/home/user/.m2 -v "$(pwd):/workdir" -p  12345:12345 -w /workdir {{name}}
+docker run -it --rm -v -v "$(pwd):/workdir" -p  12345:12345 -p 7777:7777 -w /workdir appcompany.funapp
