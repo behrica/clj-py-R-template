@@ -544,3 +544,24 @@ Added scripts for Docker
 Only changes to the Dockerfiles
 Library versions state the same as in 1.5.2
 
+### 1.7.0
+
+|dependency|version|
+|----------|-------|
+|clojure | 1.10.3.981|
+|R         | 4.1.2 |
+|java |  openjdk 11|
+|python| 3.10.0|
+|julia | 1.7.2 |
+|APL | latest |
+|RServe| 1.8-7|
+|tablecloth  | 6.076|
+|tech.ml.dataset | 6.076 |
+|clj-python/libpython-clj| 2.018|
+|com.cnuernber/libjulia-clj| 1.000-beta-8|
+|scicloj.ml| 0.2.0|
+|scicloj/clojisr |1.0.0-BETA19|
+|notespace | 3-beta9 |
+|cider-nrepl | 0.25.9|
+|libapl-clj |0.1.2-ALPHA-SNAPSHOT|
+|clerk|0.6.387|
