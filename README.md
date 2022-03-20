@@ -220,7 +220,7 @@ This requires to use [gitpod local-companion](https://www.gitpod.io/blog/local-a
  ```
  
  
- In this connected repl  cljisr, libpython-clj , julia-clj and
+ In this connected repl  clojisr, libpython-clj , julia-clj and
  libapl-clj work out of the box:
  
  ```clojure
