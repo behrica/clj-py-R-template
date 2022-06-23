@@ -29,7 +29,7 @@ docker run -it -p  12345:12345 my-app
 
 ```bash
 docker build -t my-app --build-arg USER_ID=$(id -u) --build-arg GROUP_ID=$(id -g) .
-docker run -it --rm -v $HOME/.m2:/home/user/.m2 -v "$(pwd):/workdir" -p  12345:12345 my-app
+docker run -it --rm -v $HOME/.m2:/home/user/.m2 -v "$(pwd):/workdir" -p  12345:12345 -w /workdir my-app
 ```
 
 3. In other shell: Connect normal repl to it
@@ -220,7 +220,7 @@ This requires to use [gitpod local-companion](https://www.gitpod.io/blog/local-a
  ```
  
  
- In this connected repl  cljisr, libpython-clj , julia-clj and
+ In this connected repl  clojisr, libpython-clj , julia-clj and
  libapl-clj work out of the box:
  
  ```clojure
