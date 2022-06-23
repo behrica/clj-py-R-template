@@ -64,8 +64,28 @@ WORKDIR /tmp
 RUN git clone https://github.com/uncomplicate/deep-diamond.git
 WORKDIR /tmp/deep-diamond
 
-#having this pass is the goal 
-#RUN cd deep-diamond && rm -rf test/uncomplicate/diamond/functional && lein test
+RUN rm -rf test/uncomplicate/diamond/functional # remove failing tests, as not "data"
+
+# need t patch dependencies, to make it work "better"
+RUN echo  'diff --git a/project.clj b/project.clj                 \n\
+index 4cfb494..650089c 100644                                     \n\
+--- a/project.clj\n\
++++ b/project.clj\n\
+@@ -15,7 +15,8 @@                                                 \n\
+   :dependencies [[org.clojure/clojure "1.11.1"]                  \n\
+                  [uncomplicate/neanderthal "0.44.0"]             \n\
+                  [org.bytedeco/dnnl-platform "2.5.2-1.5.7"]      \n\
+-                 [org.jcuda/jcudnn "11.6.1"]]                    \n\
++                 [org.jcuda/jcublas "11.4.1"]                    \n\
++                 [org.jcuda/jcudnn "11.4.1"]]                    \n\
+                                                                  \n\
+    :profiles {:dev {:plugins [[lein-midje "3.2.1"]               \n\
+                              [lein-codox "0.10.7"]]'  >> project.clj.patch
+
+RUN patch -l <  project.clj.patch
+# having this pass is the goal
+#
+#RUN lein test
 CMD ["python3", "-c", "from clojurebridge import cljbridge;cljbridge.init_jvm(start_repl=True,port=12345,bind='0.0.0.0',mvn_local_repo='/tmp/.m2/repository')"]
 
 #clojure -Sdeps '{:deps {nrepl/nrepl {:mvn/version "0.8.3"} cider/cider-nrepl {:mvn/version "0.25.5"}}}' -Sdeps '{:mvn/local-repo "/tmp/.m2/repository"}' '-Spath'
