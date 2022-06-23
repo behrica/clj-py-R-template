@@ -17,7 +17,14 @@
                                      :git/sha "f40e17a95eaab6f81417d315f8499be7141b813c"}
         ;; {:mvn/version "0.1.2-ALPHA-SNAPSHOT"}
 
-        io.github.nextjournal/clerk {:mvn/version "0.6.387"}}
+        io.github.nextjournal/clerk {:mvn/version "0.6.387"}
+        ;; https://mvnrepository.com/artifact/org.jcuda/jcuda
+        org.jcuda/jcuda             {:mvn/version "11.4.1"}
+
+        uncomplicate/clojurecuda    {:mvn/version "0.15.0"}
+        uncomplicate/clojurecl      {:mvn/version "0.15.1"}
+
+        uncomplicate/deep-diamond   {:mvn/version "0.23.0"}}
 
 
 
